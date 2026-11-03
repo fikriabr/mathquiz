@@ -67,6 +67,7 @@ const diffName = d => DIFFS[d - 1][LANG === 'en' ? 'en' : 'id'];
 function genProblem(id) {
   const c = catOf(id); seedRng(PR.seed[id - 1]); let r = null;
   try { r = c.fn(PR.d[id - 1]); } catch (e) { r = null; }
+  if (r && r.o) { r.q = fixMinus(r.q); r.exp = fixMinus(r.exp || ''); r.o.opts = r.o.opts.map(fixMinus); }
   return r;
 }
 const tmp = document.createElement('div');
@@ -177,10 +178,10 @@ function renderProblem() {
     let cls = '', dis = '';
     if (done) { dis = 'disabled'; if (i === o.ans) cls = 'ok'; else if (CUR.wrong.has(i)) cls = 'bad'; }
     else if (CUR.wrong.has(i)) { cls = 'bad'; dis = 'disabled'; } else if (CUR.sel === i) cls = 'sel';
-    return `<button class="opt ${cls}" data-act="sel" data-i="${i}" ${dis} aria-pressed="${CUR.sel === i}"><span class="k">${'ABCD'[i]}</span><span class="v">${txt}</span></button>`;
+    return `<button class="opt ${cls}" data-act="sel" data-i="${i}" ${dis} aria-pressed="${CUR.sel === i}"><span class="k">${'ABCD'[i]}</span><span class="v">${fmtMath(txt)}</span></button>`;
   }).join('');
   let fb = '';
-  const expl = `<h3>${t('explain')}</h3>${r.exp || ''}${r.ev ? `<div class="viz">${r.ev}</div>` : ''}`;
+  const expl = `<h3>${t('explain')}</h3>${fmtMath(r.exp || '')}${r.ev ? `<div class="viz">${fmtMath(r.ev)}</div>` : ''}`;
   if (CUR.solved) fb = `<section class="card fb ok" role="status"><h2>${t('correct_t')}</h2>${expl}</section>`;
   else if (CUR.revealed) fb = `<section class="card fb info" role="status"><p class="ans">${t('right_ans')} <b>${'ABCD'[o.ans]}</b></p><p class="mut">${t('revealed_note')}</p>${expl}</section>`;
   else if (CUR.last === 'wrong') fb = `<section class="card fb bad" role="status"><h2>${t('wrong_t')}</h2><p>${t('retry')}?</p></section>`;
@@ -189,7 +190,7 @@ function renderProblem() {
   <div class="pv-top"><a class="btn sm" href="#problems">← ${t('back')}</a><span style="display:flex;gap:8px"><button class="btn sm" data-act="nav" data-v="-1">← ${t('prev_p')}</button><button class="btn sm" data-act="random">${t('btn_random')}</button><button class="btn sm" data-act="nav" data-v="1">${t('next')} →</button></span></div>
   <h1><span class="pid">#${id}</span> ${esc(titleOf(c))}</h1>
   <div class="tags"><span class="tag lv-${c.level}">${levelName(c)}</span><span class="chip dif dif${d}">${diffName(d)}</span><span class="chip">${materiName(c.materi)}</span>${stIcon(DB.status[id] | 0)}<span class="mut" style="font-size:.88rem">${tries ? t('attempts') + ': ' + tries : t('not_tried')}</span>${miss ? `<span class="nomt">${t('untranslated')}</span>` : ''}</div>
-  <article class="card qcard"><div class="qtext">${r.q}</div>${r.viz ? `<div class="viz">${r.viz}</div>` : ''}</article>
+  <article class="card qcard"><div class="qtext">${fmtMath(r.q)}</div>${r.viz ? `<div class="viz">${r.viz}</div>` : ''}</article>
   <div class="opts" role="group" aria-label="Pilihan jawaban">${opts}</div>
   ${done ? `<div class="actions"><button class="btn pri" data-act="nav" data-v="1">${t('next_p')} →</button></div>` : `<div class="actions"><button class="btn pri" data-act="submit">${t('submit')}</button><button class="btn" data-act="reveal">${t('show_sol')}</button><span class="mut" id="msg" role="alert">${CUR.msg}</span></div>`}
   ${fb}</main>`;
@@ -220,7 +221,7 @@ function renderStats() {
   <section class="card stat"><h2>${t('s_by_diff')}</h2>${[1, 2, 3].map(d => `<div class="bar" style="color:${dcol[d]}"><span class="dif dif${d}">${diffName(d)}</span><i><b style="width:${COUNT.d[d] ? 100 * sc.d[d] / COUNT.d[d] : 0}%"></b></i><span style="color:var(--ink)">${nf(sc.d[d])}/${nf(COUNT.d[d])}</span></div>`).join('')}</section></div>
   <section class="card stat" style="margin-bottom:22px"><h2>${t('s_act')}</h2><div class="heat" aria-label="${t('s_act')}">${heat}</div></section>
   <div class="stats-grid"><section class="card stat"><h2>${t('s_by_level')}</h2>${LEVELS.filter(lv => COUNT.l[lv.id]).map(lv => `<div class="bar" style="color:var(--l-${lv.id})"><span style="color:var(--ink)">${LANG === 'en' ? lv.en : lv.id_}</span><i><b style="width:${100 * (sc.l[lv.id] | 0) / COUNT.l[lv.id]}%"></b></i><span style="color:var(--ink)">${nf(sc.l[lv.id] | 0)}/${nf(COUNT.l[lv.id])}</span></div>`).join('')}</section>
-  <section class="card stat" style="grid-column:1/-1"><h2>${t('s_by_topic')}</h2><div class="mtable">${rows.map(k => `<div class="mrow"><span>${materiName(k)}</span><i><b style="width:${100 * (sc.m[k] | 0) / COUNT.m[k]}%"></b></i><span>${nf(sc.m[k] | 0)}/${nf(COUNT.m[k])}</span></div>`).join('')}</div></section></div></main>`;
+  <section class="card stat" style="grid-column:1/-1"><h2>${t('s_by_topic')}</h2><div class="topic-table">${rows.map(k => `<div class="mrow"><span>${materiName(k)}</span><i><b style="width:${100 * (sc.m[k] | 0) / COUNT.m[k]}%"></b></i><span>${nf(sc.m[k] | 0)}/${nf(COUNT.m[k])}</span></div>`).join('')}</div></section></div></main>`;
 }
 
 /* ====== Rute & peristiwa ====== */

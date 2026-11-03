@@ -1,7 +1,7 @@
 /* Bangun bank soal: jalankan semua generator, buang duplikat, simpan seed unik */
 const fs = require('fs'), vm = require('vm');
 const CAP = +process.env.CAP || 1200;
-const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_extra', 'meta'];
+const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_extra', 'meta'];
 const files = order.filter(f => fs.existsSync(`src/${f}.js`));
 const code = files.map(f => fs.readFileSync(`src/${f}.js`, 'utf8')).join('\n') + '\n;this.__ = { TOPICS, LEVELS, seedRng, setLang };';
 const ctx = { console }; vm.createContext(ctx); vm.runInContext(code, ctx);

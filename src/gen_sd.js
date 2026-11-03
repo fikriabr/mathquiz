@@ -82,7 +82,7 @@ function sdFracRead(d) {
   const n = R(d === 3 ? 3 : 1, parts - 1);
   return {
     q: 'Berapa bagian lingkaran yang diarsir (berwarna)?', viz: svgPie(parts, n),
-    o: opts(fr(n, parts), [fr(parts - n, parts), fr(n, parts - n), fr(n + 1, parts), fr(parts, n), fr(n, parts + 1)], () => fr(R(1, parts), parts + R(0, 3))),
+    o: opts(fr(n, parts), [fr(parts - n, parts), n < parts - n ? fr(n, parts - n) : null, n + 1 < parts ? fr(n + 1, parts) : null, fr(n, parts + 1), fr(Math.max(1, n - 1), parts)], () => fr(R(1, parts - 1) || 1, parts + R(1, 3))),
     exp: ST(`Lingkaran dibagi menjadi <b>${parts}</b> bagian sama besar, jadi penyebutnya ${parts}.`, `Bagian yang diarsir ada <b>${n}</b>, jadi pembilangnya ${n}.`, `Pecahannya ${fr(n, parts)}.`) + TIP('Pecahan = bagian yang diambil di atas, banyaknya bagian seluruhnya di bawah.')
   };
 }

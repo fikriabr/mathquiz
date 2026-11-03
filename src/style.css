@@ -171,7 +171,7 @@ sup, sub { line-height: 0; }
 .heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 14px); gap: 4px; overflow-x: auto; padding-bottom: 6px; }
 .heat i { width: 14px; height: 14px; border-radius: 3px; background: var(--soft); border: 1px solid var(--grid); display: block; }
 .heat i.h1 { background: color-mix(in srgb, var(--accent) 30%, var(--soft)); } .heat i.h2 { background: color-mix(in srgb, var(--accent) 55%, var(--soft)); } .heat i.h3 { background: color-mix(in srgb, var(--accent) 80%, var(--soft)); } .heat i.h4 { background: var(--accent); }
-.mtable { display: grid; gap: 8px; }
+.topic-table { display: grid; gap: 8px; }
 .mrow { display: grid; grid-template-columns: minmax(120px, 190px) 1fr auto; gap: 12px; align-items: center; font-weight: 800; font-size: .92rem; }
 .mrow > i { height: 10px; border: 2px solid var(--line); border-radius: 6px; background: var(--soft); overflow: hidden; display: block; } .mrow > i > b { display: block; height: 100%; background: var(--accent); }
 .foot { margin-top: 30px; text-align: center; font-size: .9rem; }
@@ -195,3 +195,7 @@ sup, sub { line-height: 0; }
   .fb, .qcard { animation: pop .22s ease-out; }
   @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
+
+/* ---- KaTeX ---- */
+.katex { font-size: 1.08em; } .qtext .katex { font-size: 1.12em; } .opt .katex { font-size: 1.12em; } .katex-display { margin: .4em 0; }
+.steps .katex, .tip .katex { font-size: 1.04em; } .opt .v { overflow-x: auto; overflow-y: hidden; }
