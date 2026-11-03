@@ -3,7 +3,7 @@
 Bank soal matematika bernomor tetap, dari SD sampai kuliah, dengan filter materi, penanda status
 (belum / dicoba / selesai), pembahasan langkah demi langkah, dan antarmuka dua bahasa (ID/EN).
 
-Status: **versi 1** (SD, SMP, SMA). Soal Kuliah dan Umum, serta terjemahan Inggris untuk isi soal, masih dikerjakan.
+Status: **versi 3** (SD sampai Umum, 115 ribu soal unik). Terjemahan Inggris isi soal baru mencakup Kuliah, Umum, dan trigonometri bergambar.
 
 ## Struktur
 - `src/core.js` mesin inti (angka, i18n, pembuat pilihan jawaban, gambar SVG)

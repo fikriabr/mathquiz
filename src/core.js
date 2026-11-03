@@ -225,7 +225,7 @@ function plot(o) {
     s += `<polygon points="${top}${bot}" class="shade"/>`;
   }
   (o.fns || []).forEach((fn, k) => {
-    let d = ''; for (let i = 0; i <= 140; i++) { const x = xr[0] + (xr[1] - xr[0]) * i / 140; d += (i ? 'L' : 'M') + f1(X(x)) + ' ' + f1(Y(fn(x))); }
+    let d = '', pen = false; for (let i = 0; i <= 140; i++) { const x = xr[0] + (xr[1] - xr[0]) * i / 140, y = fn(x); if (!isFinite(y)) { pen = false; continue; } d += (pen ? 'L' : 'M') + f1(X(x)) + ' ' + f1(Y(y)); pen = true; }
     s += `<path d="${d}" class="ln ${k ? 'c2' : ''}" style="stroke-width:3"/>`;
   });
   s += '</g>';

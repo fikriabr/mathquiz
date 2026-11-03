@@ -1,5 +1,5 @@
 const fs = require('fs');
-const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_kuliah', 'gen_umum', 'gen_extra', 'meta', 'bank', 'app'];
+const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_extra', 'meta', 'bank', 'app'];
 const js = order.filter(f => fs.existsSync(`src/${f}.js`)).map(f => fs.readFileSync(`src/${f}.js`, 'utf8').replace(/^'use strict';\n/, '')).join('\n');
 const css = fs.readFileSync('src/style.css', 'utf8');
 const html = `<title>Jagoan Matematika</title>
