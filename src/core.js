@@ -76,7 +76,7 @@ function cx(a, b) {
 }
 
 /* tanda hubung di depan angka (di luar tag HTML) menjadi minus matematis */
-const fixMinus = h => String(h).replace(/(<[^>]*>)|(^|[\s=(,;:|])-(?=\d)/g, (m, t, p) => (t ? t : p + MINUS));
+const fixMinus = h => String(h).replace(/(<[^>]*>)|(^|[\s=(,;:|]|(?<=>))-(?=\d)/g, (m, t, p) => (t ? t : p + MINUS));
 const ST = (...s) => '<ol class="steps">' + s.flat().map(x => `<li>${x}</li>`).join('') + '</ol>';
 const TIP = (t, en) => `<p class="tip"><b>${(LANG === 'en' && en != null) ? 'Tip:' : 'Trik:'}</b> ${tr(t, en)}</p>`;
 const G = (min, fn) => ({ min, fn });

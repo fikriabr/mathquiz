@@ -1,6 +1,6 @@
 /* Pindai: generator mana yang keluarannya (mode EN) bersih dari kata Indonesia */
 const fs = require('fs'), vm = require('vm');
-const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'meta'];
+const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_smp2', 'gen_sma2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'meta'];
 const code = order.filter(f => fs.existsSync(`src/${f}.js`)).map(f => fs.readFileSync(`src/${f}.js`, 'utf8')).join('\n') + '\n;this.__ = { TOPICS, seedRng, setLang };';
 const ctx = { console }; vm.createContext(ctx); vm.runInContext(code, ctx);
 const { TOPICS, seedRng, setLang } = ctx.__; setLang('en');

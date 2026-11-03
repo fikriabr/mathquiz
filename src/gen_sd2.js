@@ -34,13 +34,13 @@ function svgSolid(kind, L = {}) {
   if (kind === 'cyl') {
     const rx = 48, ry = 16, cx = 100, t = 40, b = 140;
     s += `<path d="M${cx - rx} ${t}V${b}A${rx} ${ry} 0 0 0 ${cx + rx} ${b}V${t}Z" class="f1"/><ellipse cx="${cx}" cy="${t}" rx="${rx}" ry="${ry}" class="f0"/><path d="M${cx - rx} ${b}A${rx} ${ry} 0 0 1 ${cx + rx} ${b}" class="ln dash" style="stroke-width:1.8"/>`;
-    if (L.r) s += `<line class="ln" style="stroke-width:2" x1="${cx}" y1="${t}" x2="${cx + rx}" y2="${t}"/>` + TX(cx + rx / 2, t - 6, L.r) + TX(cx + rx + 16, (t + b) / 2 + 5, L.h, 'start');
+    if (L.r) s += `<line class="ln" style="stroke-width:2" x1="${cx}" y1="${t}" x2="${cx + rx}" y2="${t}"/>` + TX(cx + rx / 2, t - ry - 6, L.r) + TX(cx + rx + 16, (t + b) / 2 + 5, L.h, 'start');
     return svg(210, 180, s, tr('Tabung', 'Cylinder'));
   }
   if (kind === 'cone') {
     const rx = 52, ry = 16, cx = 100, t = 20, b = 140;
     s += `<path d="M${cx} ${t}L${cx - rx} ${b}A${rx} ${ry} 0 0 0 ${cx + rx} ${b}Z" class="f1"/><path d="M${cx - rx} ${b}A${rx} ${ry} 0 0 1 ${cx + rx} ${b}" class="ln dash" style="stroke-width:1.8"/>`;
-    if (L.r) s += `<line class="ln dash" style="stroke-width:1.8" x1="${cx}" y1="${t}" x2="${cx}" y2="${b}"/><line class="ln" style="stroke-width:2" x1="${cx}" y1="${b}" x2="${cx + rx}" y2="${b}"/>` + TX(cx + rx / 2, b + 18, L.r) + TX(cx - 6, (t + b) / 2, L.h, 'end');
+    if (L.r) s += `<line class="ln dash" style="stroke-width:1.8" x1="${cx}" y1="${t}" x2="${cx}" y2="${b}"/><line class="ln" style="stroke-width:2" x1="${cx}" y1="${b}" x2="${cx + rx}" y2="${b}"/>` + TX(cx + rx / 2, b + 34, L.r) + TX(cx + 10, (t + b) / 2, L.h, 'start');
     return svg(210, 180, s, tr('Kerucut', 'Cone'));
   }
   s += `<circle cx="100" cy="90" r="64" class="f1"/><path d="M36 90A64 18 0 0 0 164 90" class="ln dash" style="stroke-width:1.8"/>`;
