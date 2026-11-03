@@ -1,0 +1,321 @@
+1	 and 
+2	The solution set of <b>${eq} = 0</b> is x = …
+3	Find two numbers whose product is ${N(r1[0] * r2[0])} and whose sum is ${N(r1[0] + r2[0])}.
+4	Factor the quadratic (find a pair of factors of a·c that add up to b).
+5	Factors: ${fac}
+6	Set each factor equal to zero:
+7	Quick check: sum of roots = −b/a and product of roots = c/a.
+8	Parabola graph
+9	!The ${mx ? 'maximum' : 'minimum'} value of the function <b>f(x) = ${f}</b> is …
+10	!Coefficient of x² = ${a} ${a < 0 ? '< 0, the parabola opens downward and has a maximum value' : '> 0, the parabola opens upward and has a minimum value'}.
+11	An extreme value is the y-coordinate of the vertex, not its x-coordinate.
+12	The coordinates of the vertex of the graph <b>y = ${f}</b> are …
+13	Vertex: <b>(${N(h)}, ${N(k)})</b>
+14	Axis of symmetry of the parabola: x = −b/2a. Substitute it into the function to get y.
+15	Two distinct real roots
+16	One real root (a repeated root)
+17	No real roots
+18	Three real roots
+19	The quadratic equation <b>${P([a, b, c])} = 0</b> has …
+20	Discriminant D = b² ${MINUS} 4ac = (${N(b)})² ${MINUS} 4(${N(a)})(${N(c)}) = <b>${N(D)}</b>
+21	D > 0 → two distinct real roots
+22	D = 0 → one repeated real root
+23	D < 0 → no real roots
+24	The discriminant "checks" the roots without having to solve the equation.
+25	The equation <b>x² ${b < 0 ? MINUS : '+'} ${Math.abs(b)}x + k = 0</b> has a repeated root. The value of k is …
+26	A repeated root occurs when D = 0.
+27	A repeated root means the parabola touches the x-axis at exactly one point.
+28	!For the equation <b>x² ${MINUS} ${b}x + k = 0</b> to ${real2 ? 'have two distinct real roots' : 'have no real roots'}, the range of k is …
+29	Two distinct roots: D > 0 → ${b * b} ${MINUS} 4k > 0 → k < ${K}
+30	No real roots: D < 0 → ${b * b} ${MINUS} 4k < 0 → k > ${K}
+31	Watch the direction of the sign: dividing by a negative number flips the inequality.
+32	The value of <b>${pw(B, a)} × ${pw(B, b)} ÷ ${pw(B, c)}</b> is …
+33	Multiplying with the same base: add the exponents; dividing: subtract the exponents.
+34	aᵐ × aⁿ = aᵐ⁺ⁿ and aᵐ ÷ aⁿ = aᵐ⁻ⁿ.
+35	The value of <b>${pw(B, MINUS + n)}</b> is …
+36	A negative exponent flips: a${sup(MINUS + 'n')} = ${fr(1, 'a<sup>n</sup>')}
+37	A negative exponent does not give a negative number. It only flips the fraction.
+38	The value of <b>(${fr(1, B)})<sup>${MINUS}${n}</sup></b> is …
+39	A fraction with a negative exponent: flip the fraction, and the exponent becomes positive.
+40	The value of <b>${N(base)}<sup>${pp < 0 ? MINUS : ''}${fr(Math.abs(pp), qd)}</sup></b> is …
+41	${N(base)} = ${m}<sup>${qd}</sup>, so ${N(base)}<sup>${fr(Math.abs(pp), qd)}</sup> = ${m}<sup>${qd}×${fr(Math.abs(pp), qd)}</sup> = ${m}<sup>${Math.abs(pp)}</sup>
+42	Because the exponent is negative: ${fr(1, m ** -pp)} = <b>${frs(1, m ** -pp)}</b>
+43	A fractional exponent p/q means the q-th root, then raised to the power p. Write the number in the same base first.
+44	The value of <b>${lg(b)} ${N(b ** n)}</b> is …
+45	${lg(b)} ${N(b ** n)} asks: "${b} to what power gives ${N(b ** n)}?"
+46	${b}<sup>${n}</sup> = ${N(b ** n)}, so the answer is <b>${n}</b>
+47	A logarithm is the inverse of an exponent.
+48	The value of <b>${lg(b)} ${N(b ** i)} + ${lg(b)} ${N(b ** (n - i))}</b> is …
+49	Log rule: log a + log b = log (a × b)
+50	Adding logs becomes multiplying inside the log (same base).
+51	The value of <b>${lg(b)} ${N(b ** (n + i))} ${MINUS} ${lg(b)} ${N(b ** i)}</b> is …
+52	Log rule: log a − log b = log (a ÷ b)
+53	Subtracting logs becomes dividing inside the log.
+57	The value of <b>${lg(a)} ${b} × ${lg(b)} ${N(a ** n)}</b> is …
+58	Chain rule: ᵃlog b × ᵇlog c = ᵃlog c
+59	The left base and the middle number "cancel", like linking a chain.
+61	The value of <b>${lg(a)} ${b} × ${lg(b)} ${a}</b> is …
+62	${lg(a)} ${b} × ${lg(b)} ${a} = ${lg(a)} ${a} (chain rule)
+63	ᵃlog b and ᵇlog a are reciprocals, so their product is always 1.
+64	If <b>${lg(2)} ${k} = p</b>, then <b>${lg(2)} ${N(k * 2 ** n)}</b> = …
+65	Break the number inside the log into a product, then turn it into a sum of logs.
+66	The value of x that satisfies <b>${B}<sup>x + ${k}</sup> = ${N(B ** n)}</b> is …
+67	Same base, so the exponents are equal: x + ${k} = ${n}
+68	Make the bases the same on both sides, then equate the exponents.
+69	The value of x that satisfies <b>${B}<sup>${a}x ${MINUS} ${c}</sup> = ${N(B ** n)}</b> is …
+70	Once the bases are equal, all that is left is an ordinary linear equation.
+73	The value of x that satisfies <b>${B}<sup>x</sup> = ${T}</b> is …
+74	Make the bases equal. Take the smallest base that can express both.
+75	${B} and ${T} are both powers of ${B === 4 || T === 4 ? 2 : 3}
+76	Rewrite the exponents and equate them: x = <b>${frs(x[0], x[1])}</b>
+77	Different bases can often be made equal through their prime bases (2, 3, 5).
+78	The value of x that satisfies <b>${lg(b)}(x + ${k}) = ${n}</b> is …
+79	${lg(b)}(x + ${k}) = ${n} means x + ${k} = ${b}<sup>${n}</sup> = ${b ** n}
+80	Convert the log form to the exponent form: ᵃlog b = c ⇔ aᶜ = b.
+82	all positive
+83	sin positive
+84	tan positive
+85	cos positive
+86	The value of <b>${fn} ${th}°</b> is …
+87	On the unit circle, the point for ${th}° is (${N(Math.round(Math.cos(rad)))}, ${N(Math.round(Math.sin(rad)))}). cos = x-coordinate, sin = y-coordinate, tan = y/x.
+88	The angle ${th}° lies in quadrant ${kuad} (${pos}).
+89	The reference angle is ${ref}°, and ${fn} ${ref}° = ${exact(f(ref * Math.PI / 180))}.
+90	!Sign in quadrant ${kuad}: ${v < 0 ? 'negative' : 'positive'}.
+91	Quadrant I: all positive, II: sin positive, III: tan positive, IV: cos positive. Remember: "All Students Take Calculus".
+92	Look at the right triangle below. The value of <b>${fn} θ</b> is …
+93	adjacent = ${a}
+94	opposite = ${b}
+95	hypotenuse = ${c}
+96	The side opposite angle θ is the vertical side, and the side next to θ is the base.
+97	sin θ = opposite/hypotenuse, cos θ = adjacent/hypotenuse, tan θ = opposite/adjacent
+98	Remember "SOH-CAH-TOA" (opposite, adjacent, hypotenuse).
+99	From a point <b>${dist} m</b> from the foot of a tower, the angle of elevation to the top of the tower is <b>${ang}°</b>. The height of the tower is … m
+100	height = ?
+101	tan ${ang}° = height / distance
+102	tan 45° = 1, so height = distance
+103	tan 60° = √3, so height = distance × √3
+104	tan 30° = ${fr(1, 3)}√3, so height = distance × ${fr(1, 3)}√3
+105	Height = <b>${h} m</b>
+106	The angle of elevation is measured from the horizontal upward. Use tan because the adjacent side is known and the opposite side is wanted.
+107	The <b>${n}</b>-th term of the sequence <b>${[0, 1, 2, 3].map(i => a + i * b).join(', ')}, …</b> is …
+108	a = ${a}, common difference b = ${b}
+109	The n-th term always needs (n − 1) times the difference, not n times.
+110	In an arithmetic sequence, the ${p}-th term is <b>${up}</b> and the ${q}-th term is <b>${uq}</b>. The <b>${n}</b>-th term is …
+111	Difference b = (U${q} ${MINUS} U${p}) ÷ (${q} ${MINUS} ${p}) = ${uq - up} ÷ ${q - p} = ${bb}
+112	Any two terms are enough to find the difference: the difference of the terms divided by the difference of their positions.
+113	The sum of the first <b>${n}</b> terms of the series <b>${[0, 1, 2].map(i => a + i * b).join(' + ')} + …</b> is …
+114	Another formula: Sₙ = n/2 × (U₁ + Uₙ). The average of the first and last terms times the number of terms.
+115	A concert hall has seats arranged so that the first row has <b>${a + 3}</b> seats and each following row has <b>${b}</b> more seats. If there are <b>${bar}</b> rows, how many seats are there in total?
+116	Arithmetic sequence with a = ${a + 3}, b = ${b}, n = ${bar}
+117	= <b>${N(bar * (2 * (a + 3) + (bar - 1) * b) / 2)}</b> seats
+118	A "constant increase" at every step is the hallmark of an arithmetic series.
+119	The <b>${n}</b>-th term of the geometric sequence <b>${[0, 1, 2].map(i => a * r ** i).join(', ')}, …</b> is …
+120	a = ${a}, ratio r = ${r}
+121	Ratio = the next term divided by the previous term.
+122	The sum of the first <b>${n}</b> terms of the series <b>${a} + ${2 * a} + ${4 * a} + …</b> is …
+123	For r = 2, the sum is always one less than the next term, divided by a.
+124	A ball is dropped from a height of <b>${h} m</b>. Each bounce reaches ${fr(p, q)} of the previous height. The total distance travelled by the ball until it stops is … m
+125	First drop: ${h} m. After that, each bounce counts as an up and a down (twice).
+126	Total = h + 2 × (h · r)/(1 ${MINUS} r) with r = ${fr(p, q)}
+127	Remember: except for the first drop, every height is travelled twice (up and down).
+128	The sum of the infinite geometric series <b>${a} + ${N(a * p / q)} + ${N(a * p * p / q / q)} + …</b> is …
+129	a = ${a}, r = ${fr(p, q)} (|r| < 1, so the infinite sum exists)
+130	An infinite series only has a sum if |r| < 1.
+131	Someone has ${a} shirts, ${b} pairs of pants, and ${c} pairs of shoes. In how many different ways can they get fully dressed?
+132	Multiplication rule: each choice can be paired with every other choice.
+133	"And" means multiply, "or" means add.
+134	A PIN consists of <b>${n} digits</b> (0–9) with <b>no repeated digit</b>. How many PINs are possible?
+135	First digit: 10 choices. Second digit: 9 choices, and so on.
+136	Without repetition, the number of choices drops by one at each step.
+147	The number of different arrangements of the letters of the word <b>${w}</b> is …
+148	!The word ${w} has ${n} letters, with repeated letters: ${f.map(x => `${x} times`).join(' and ')}.
+149	Identical letters cannot be told apart, so divide by the number of arrangements of the repeated letters.
+151	In how many ways can <b>${n} people</b> be arranged to sit in a row of ${n} chairs?
+152	First chair: ${n} choices, second chair: ${n - 1} choices, …
+153	Arranging n different objects in a row: n!.
+154	From ${n} contestants, the 1st to ${r}th place winners will be chosen. How many different podium arrangements are possible?
+155	Order matters (1st, 2nd, 3rd places differ) → permutation.
+156	If order matters, use a permutation; if not, use a combination.
+161	From ${n} students, ${r} will be chosen for a team. In how many different ways can the team be chosen?
+162	Order does not matter (the same team) → combination.
+163	Combination = permutation divided by r!, because order within the team is not distinguished.
+165	A committee consists of ${b} boys chosen from ${a} boys and ${e} girls chosen from ${c} girls. How many different committees are possible?
+166	Boys: C(${a},${b}) = ${nCr(a, b)}
+167	Girls: C(${c},${e}) = ${nCr(c, e)}
+168	Combined (and → multiply): ${nCr(a, b)} × ${nCr(c, e)} = <b>${nCr(a, b) * nCr(c, e)}</b>
+169	Two separate selections made together are multiplied.
+170	In how many ways can <b>${n} people</b> be seated around a round table?
+171	In a circular arrangement, rotating everyone does not count as a new arrangement.
+172	Fix one person as a reference and arrange the rest: (${n} ${MINUS} 1)! = ${n - 1}!
+173	Circular permutation of n objects = (n − 1)!.
+174	The slope of the tangent line to the curve <b>y = ${f}</b> at the point where <b>x = ${sg(x0)}</b> is …
+175	Slope = derivative: y′ = ${P(dv)}
+176	Substitute x = ${sg(x0)}: y′ = <b>${sg(g)}</b>
+177	Substitute into y′ (the derivative), not into y (the function).
+178	The first derivative of <b>f(x) = ${f}</b> is f′(x) = …
+179	Power rule: the derivative of axⁿ is n·a·x<sup>n−1</sup>. The derivative of a constant is 0.
+180	The exponent goes down by one, and the old exponent becomes the multiplier.
+185	The sum of two positive numbers is <b>${S}</b>. The maximum product of those two numbers is …
+186	Let the numbers be x and ${S} ${MINUS} x. Product f(x) = x(${S} ${MINUS} x) = ${S}x ${MINUS} x²
+187	Maximum product = ${S / 2} × ${S / 2} = <b>${(S / 2) ** 2}</b>
+188	For a fixed sum, the product of two numbers is largest when they are equal.
+190	A wire of length <b>${K} cm</b> is bent into a rectangle. The maximum possible area is … cm²
+191	l + w = ${K / 2}. Area = l(${K / 2} ${MINUS} l).
+192	Maximum when l = w = ${K / 4} (a square).
+193	Maximum area = ${K / 4}² = <b>${(K / 4) ** 2} cm²</b>
+194	With a fixed perimeter, the largest area is reached by the most "round" shape, which is the square.
+195	The local maximum value of the function <b>f(x) = x<sup>3</sup> ${MINUS} ${3 * a * a}x</b> is …
+196	f″(x) = 6x. At x = ${MINUS}${a}, f″ < 0 → local maximum.
+197	A negative second derivative → peak (maximum), positive → valley (minimum).
+198	Given <b>f(x) = ${f}</b>. The value of f(${sg(x0)}) is …
+199	Replace x with ${sg(x0)}: f(${sg(x0)}) = ${a}(${sg(x0)}) ${b < 0 ? MINUS : '+'} ${Math.abs(b)}
+200	A function is a machine: put a number in, follow the rule, get the result out.
+201	Given <b>f(x) = ${f}</b> and <b>g(x) = ${g}</b>. The value of (f ∘ g)(${sg(x0)}) is …
+202	(f ∘ g)(x) = f(g(x)): do g first.
+203	(f∘g) means g first, then f. Read it from right to left.
+204	Given <b>f(x) = ${f}</b>. The value of f<sup>${MINUS}1</sup>(${sg(y)}) is …
+205	f<sup>${MINUS}1</sup>(${sg(y)}) is the x that makes f(x) = ${sg(y)}.
+206	An inverse = reversing the process. The opposite of "multiply by a, then add b" is "subtract b, then divide by a".
+207	The slope of the line through the points <b>(${sg(x1)}, ${sg(y1)})</b> and <b>(${sg(x2)}, ${sg(y2)})</b> is …
+208	Slope m = (y₂ − y₁) ÷ (x₂ − x₁)
+209	"Rise over run": the change in y divided by the change in x.
+210	The equation of the line with slope <b>${sg(m)}</b> through the point <b>(${sg(px)}, ${sg(py)})</b> is …
+211	Formula: y ${MINUS} y₁ = m(x ${MINUS} x₁)
+212	Simplify: <b>${ans}</b>
+213	Test your answer by plugging the given point into the equation.
+214	!Line <i>g</i> has slope <b>${sg(m)}</b>. The slope of a line ${perp ? 'perpendicular' : 'parallel'} to <i>g</i> is …
+215	Two perpendicular lines: m₁ × m₂ = ${MINUS}1
+216	Parallel lines have the same slope.
+217	Perpendicular: flip and change the sign. Parallel: exactly the same.
+218	If <b>u = (${sg(a)}, ${sg(b)})</b> and <b>v = (${sg(c)}, ${sg(e)})</b>, then <b>2u + v</b> = …
+219	Vector operations are done component by component.
+220	The length of the vector <b>u = (${k * p}, ${q})</b> is …
+221	The length of a vector follows Pythagoras; negative signs on the components have no effect.
+222	The vector <b>u = (k, ${u2})</b> is perpendicular to the vector <b>v = (${v1}, ${sg(v2)})</b>. The value of k is …
+223	Two vectors are perpendicular if their dot product is zero.
+224	u·v = x₁x₂ + y₁y₂. A result of zero means a 90° angle.
+225	The determinant of the matrix ${mat(M)} is …
+226	2×2 determinant: ad − bc
+227	Multiply the main diagonal first, then subtract the other diagonal.
+228	Given the matrix A = ${mat(M)}. The element in row ${ask[0] + 1}, column ${ask[1] + 1} of <b>A<sup>${MINUS}1</sup></b> is …
+229	Inverse: A<sup>${MINUS}1</sup> = ${fr(1, 'det A')} ${mat([[e, -b], [-c, a]])}
+230	The required element: ${fr(sg(ask[2]), sg(D))} = <b>${frs(ask[2], D)}</b>
+231	Quick 2×2 inverse: swap the main diagonal, change the signs of the other diagonal, divide by the determinant.
+232	Matrix A is 2×2 with det(A) = <b>${D2}</b>. The value of det(<b>${k}A</b>) is …
+233	Multiplying a 2×2 matrix by ${k} means multiplying 2 rows, each by ${k}.
+234	Each row is multiplied by ${k}, so the determinant is multiplied by ${k} twice: ${k}² = ${k * k}
+235	For an n×n matrix: det(kA) = kⁿ × det(A).
+236	The solution of <b>${P([a, b])} &gt; ${sg(c)}</b> is …
+237	Adding, subtracting, or multiplying by a positive number does not change the direction of the sign.
+238	The solution of <b>${sg(b)} ${MINUS} ${a}x &lt; ${sg(b + a * x)}</b> is …
+239	Divide by ${MINUS}${a} (a negative number), and the direction of the sign <b>flips</b>:
+240	Multiplying or dividing by a negative number flips the direction of the inequality.
+241	x &lt; ${p} or x &gt; ${q}
+242	The solution of <b>${P([1, -(p + q), p * q])} ${less ? '&lt;' : '&gt;'} 0</b> is …
+243	x &lt; ${sg(p)} or x &gt; ${sg(q)}
+244	x &lt; ${sg(p)} or x &gt; ${sg(q)}
+245	x &lt; ${sg(-q)} or x &gt; ${sg(-p)}
+246	x &lt; ${sg(p)} and x &gt; ${sg(q)}
+247	Factorize: (x ${p < 0 ? '+' : MINUS} ${Math.abs(p)})(x ${q < 0 ? '+' : MINUS} ${Math.abs(q)}) ${less ? '&lt;' : '&gt;'} 0
+248	Zeros: x = ${sg(p)} and x = ${sg(q)}
+249	The parabola opens upward: negative between the roots, positive outside the roots. So <b>${ops.replace(/-/g, MINUS)}</b>
+250	Draw a number line, mark the roots, then test one point in each region.
+251	What are the volume and surface area of a cube? The edge length is <b>${s} cm</b>. The volume of the cube is …
+252	Volume of a cube = edge × edge × edge
+253	Volume is measured in cubic units (cm³), surface area in cm².
+254	A cuboid measures <b>${p} cm × ${l} cm × ${t} cm</b>. The surface area of the cuboid is … cm²
+255	A cuboid has 3 pairs of opposite faces that are equal.
+256	Surface area = the area of all faces; volume = the space inside.
+257	Use π = ${PI227}. The volume of a cylinder with radius <b>${r} cm</b> and height <b>${t} cm</b> is … cm³
+258	Volume of a cylinder = base area (circle) × height.
+259	Use π = ${PI227}. The volume of a cone with radius <b>${r} cm</b> and height <b>${tk} cm</b> is … cm³
+260	A cone is ⅓ of a cylinder with the same base and height.
+261	!Use π = ${PI227}. The ${vol ? 'volume' : 'surface area'} of a sphere with radius <b>${r} cm</b> is … ${vol ? 'cm³' : 'cm²'}
+262	The volume of a sphere uses r cubed, its surface area uses r squared.
+263	The number of positive factors of <b>${n}</b> is …
+264	Prime factorization: ${n} = ${f.html}
+265	Number of factors = (exponent + 1) multiplied together: ${Object.values(f.f).map(e => '(' + e + '+1)').join(' × ')}
+266	This is faster than writing out all the factors one by one.
+267	The remainder when <b>${a} × ${b}</b> is divided by <b>${m}</b> is …
+268	${a} divided by ${m} leaves ${a % m}; ${b} divided by ${m} leaves ${b % m}
+269	Multiply the remainders: ${a % m} × ${b % m} = ${(a % m) * (b % m)}
+270	${(a % m) * (b % m)} divided by ${m} leaves <b>${v}</b>
+271	Remainder of a product = product of the remainders (then take the remainder again).
+272	The remainder when <b>${b}<sup>${n}</sup></b> is divided by <b>${m}</b> is …
+273	Compute the remainder of the powers one by one: ${Array.from({ length: Math.min(n, 6) }, (_, i) => { let u = 1; for (let k = 0; k <= i; k++) u = u * b % m; return `${b}<sup>${i + 1}</sup> → ${u}`; }).join(', ')}, …
+274	The remainders repeat in a pattern. For the exponent ${n}, the remainder is <b>${v}</b>.
+275	Remainders of large powers always repeat. Find the cycle.
+276	The smallest positive integer that leaves remainder ${rs[0]} when divided by ${mods[0]}, remainder ${rs[1]} when divided by ${mods[1]}, and remainder ${rs[2]} when divided by ${mods[2]} is …
+277	Find a number that satisfies the remainder for the largest modulus first, then increase it by multiples of that modulus.
+278	Check ${ans}: ${mods.map((m, j) => `${ans} mod ${m} = ${ans % m}`).join(', ')} ✓
+279	The smallest number is <b>${ans}</b>
+280	In remainder problems like this, start from the remainder of the largest modulus, then add multiples of the modulus.
+281	Of ${tot} students, ${a} like math, ${b} like physics, and ${none} like neither. How many students like both?
+282	Those who like at least one = ${tot} ${MINUS} ${none} = ${tot - none}
+283	Those in both groups are counted twice in the sum, so they must be subtracted once.
+284	!Set A has <b>${n}</b> elements. The number of ${pr ? 'subsets' : 'proper subsets'} of A is …
+285	Each element has 2 choices: it is either in the subset or not.
+286	2<sup>${n}</sup> = ${2 ** n} subsets
+287	All are counted (including the empty set and A itself).
+288	Proper subsets do not count A itself: ${2 ** n} ${MINUS} 1 = <b>${2 ** n - 1}</b>
+289	The number of subsets of an n-element set: 2ⁿ.
+290	it rains
+291	the road is wet
+292	it does not rain
+293	the road is not wet
+294	the number is even
+295	the number is divisible by 2
+296	the number is not even
+297	the number is not divisible by 2
+298	Andi studies diligently
+299	Andi passes the exam
+300	Andi does not study diligently
+301	Andi does not pass the exam
+302	the triangle is equilateral
+303	all three angles are equal
+304	the triangle is not equilateral
+305	the three angles are not all equal
+309	If ${q}, then ${p}.
+310	If ${np}, then ${nq}.
+311	If ${nq}, then ${np}.
+312	Given the implication: <b>"If ${p}, then ${q}."</b> Which one is its <b>${ask}</b>?
+313	${p[0].toUpperCase() + p.slice(1)} and ${q}.
+314	Notation: p → q
+315	Converse: q → p (reversed). Inverse: ¬p → ¬q (negated). Contrapositive: ¬q → ¬p (reversed and negated).
+316	Answer: <b>${ans[ask]}</b>
+317	Only the contrapositive is always equivalent (has the same truth value) to the original implication.
+320	!Data: <b>${shown.join(', ')}</b>. The ${ask === 'jangkauan' ? 'range' : 'median'} of this data is …
+324	Sort: ${data.join(', ')}
+326	Range = largest ${MINUS} smallest = ${data[8]} ${MINUS} ${data[0]} = <b>${jg}</b>
+327	9 values → the median is the 5th value = <b>${q2}</b>
+328	Sort the data first before finding the median, quartiles, or range.
+329	Data: <b>${data.join(', ')}</b>. The population variance of this data is …
+330	Mean = ${data.reduce((a, b) => a + b)} ÷ 8 = ${mean}
+331	Deviation of each value: ${data.map(x => sg(x - mean)).join(', ')}
+332	Sum of squared deviations = ${data.reduce((s, x) => s + (x - mean) ** 2, 0)}, divided by 8 = <b>${varr}</b>
+333	Variance = the mean of the squared deviations. Standard deviation is the square root of the variance.
+334	A data set has mean <b>${m}</b> and standard deviation <b>${s}</b>. If every value is multiplied by <b>${kk}</b> and then <b>${pp}</b> is added, the standard deviation becomes …
+335	Adding the same number to all values shifts the data but does not change its spread.
+336	Multiplying all values by ${kk} widens the spread ${kk} times.
+337	New standard deviation = ${s} × ${kk} = <b>${s * kk}</b> (the mean becomes ${kk * m + pp})
+338	The mean is affected by both adding and multiplying; the standard deviation only by multiplying (and is always positive).
+339	Data: <b>${data.join(', ')}</b>. The standard deviation of this data is …
+340	Mean = ${5 * c}
+341	Variance = sum of squared deviations ÷ 8 = ${(4 * c * c)}
+342	Standard deviation = √${4 * c * c} = <b>${2 * c}</b>
+343	Standard deviation has the same unit as the data, while the variance has the squared unit.
+359	The center and radius of the circle <b>(x ${a < 0 ? '+' : MINUS} ${Math.abs(a)})<sup>2</sup> + (y ${b < 0 ? '+' : MINUS} ${Math.abs(b)})<sup>2</sup> = ${r * r}</b> are, respectively …
+360	(${sg(a)}, ${sg(b)}) and ${r}
+361	(${sg(-a)}, ${sg(-b)}) and ${r}
+362	(${sg(a)}, ${sg(b)}) and ${r * r}
+363	(${sg(b)}, ${sg(a)}) and ${r}
+364	(${sg(-a)}, ${sg(-b)}) and ${r * r}
+365	(${sg(a + u)}, ${sg(b + v)}) and ${r + w}
+366	Standard form: (x − a)² + (y − b)² = r² with center (a, b).
+367	Watch the sign: x ${a < 0 ? '+' : MINUS} ${Math.abs(a)} means a = ${sg(a)}.
+368	r² = ${r * r} → r = <b>${r}</b>. Center: <b>(${sg(a)}, ${sg(b)})</b>
+369	The sign in the center is always opposite to the sign inside the bracket.
+370	The radius of the circle <b>x<sup>2</sup> + y<sup>2</sup> ${a === 0 ? '' : (-2 * a < 0 ? MINUS : '+') + ' ' + Math.abs(2 * a) + 'x'} ${b === 0 ? '' : (-2 * b < 0 ? MINUS : '+') + ' ' + Math.abs(2 * b) + 'y'} ${c < 0 ? MINUS : '+'} ${Math.abs(c)} = 0</b> is …
+371	General form: x² + y² + Ax + By + C = 0 with center (−A/2, −B/2).
+372	Center = (${sg(a)}, ${sg(b)})
+373	Complete the square or use r² = (A/2)² + (B/2)² − C.

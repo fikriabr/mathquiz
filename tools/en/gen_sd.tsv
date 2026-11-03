@@ -1,0 +1,136 @@
+17	marbles
+18	stickers
+19	picture cards
+20	storybooks
+21	colored pencils
+22	apples
+23	cakes
+24	balloons
+25	candies
+26	buttons
+27	${n} has <b>${N(a)}</b> ${it}. Then ${n} receives <b>${N(b)}</b> more ${it} from friends. How many ${it} does ${n} have now?
+28	If a column adds up to more than 9, carry the tens over to the column on its left.
+29	${n} brings <b>${N(a)}</b> ${it} to school. <b>${N(b)}</b> ${it} are given to a younger sibling. How many are left?
+30	A shop has <b>${N(a)}</b> ${it}. Today <b>${N(b)}</b> were sold. How many ${it} are still left?
+31	You can check a subtraction by adding back: ${N(s)} + ${N(b)} = ${N(a)}.
+32	meatball soup
+33	chicken noodles
+34	fried rice
+35	iced tea
+36	fried snacks
+37	orange juice
+38	toast
+39	fried bananas
+40	${n} buys ${qa} portions of ${A[0]} (@${Rp(A[1])}) and ${qb} portions of ${B[0]} (@${Rp(B[1])}). ${n} pays with ${Rp(pay)}. How much is the change?
+41	Total bill: ${N(ta)} + ${N(tb)} = ${N(total)}
+42	Change: ${N(pay)} ${MINUS} ${N(total)} = <b>${Rp(ch)}</b>
+43	Change = money paid minus the total bill. Do not forget to count every item!
+44	Split ${N(dec)} into ${parts.map(N).join(' + ')}
+45	Add them up: ${prods.map(N).join(' + ')} = <b>${N(x * y)}</b>
+46	There are <b>${g}</b> boxes of ${it}. Each box holds <b>${p}</b> ${it}. How many ${it} are there in total?
+47	${g} boxes × ${p} ${it} = ${g} × ${p}
+48	Look at the dots below: ${g} rows with ${p} dots in each row.
+49	Total = ${g} × ${p}
+50	Multiplication is repeated addition: ${Array(g).fill(p).join(' + ')} = ${v}.
+51	Splitting a big number into tens and ones makes multiplication easier to do in your head.
+52	<b>${N(total)}</b> ${it} are shared equally among <b>${c}</b> children. How many ${it} does each child get?
+53	Sharing equally means division. Find the number that gives ${N(total)} when multiplied by ${c}.
+54	So ${N(total)} ÷ ${c} = <b>${k}</b>
+55	Division is the opposite of multiplication. If you forget the answer, guess and check by multiplying.
+56	<b>${total}</b> cakes are to be packed into boxes. One box holds <b>${n}</b> cakes. What is the fewest number of boxes needed?
+57	${total} ÷ ${n} = ${q} remainder ${r}
+58	${q} boxes are full, but <b>${r} cakes</b> still have no box.
+59	Those left over need one more box: ${q} + 1 = <b>${q + 1}</b> boxes.
+60	In "how many are needed at least" problems, the remainder of a division is always rounded up.
+61	What fraction of the circle is shaded (colored)?
+62	The circle is divided into <b>${parts}</b> equal parts, so the denominator is ${parts}.
+63	<b>${n}</b> parts are shaded, so the numerator is ${n}.
+64	The fraction is ${fr(n, parts)}.
+65	A fraction = the parts taken on top, the total number of equal parts on the bottom.
+66	${fr(a, b1)} + ${fr(c, b2)} = … (write in simplest form)
+67	The denominators are already the same, so just add the numerators.
+68	 simplifies to 
+69	The denominator is not added. Only the numerators are added.
+70	${fr(a, b1)} + ${fr(c, b2)} = … (write in simplest form)
+71	Make the denominators equal. ${b1} × ${k} = ${b2}, so ${fr(a, b1)} = ${fr(a * k, b2)}.
+72	Simplify: <b>${frs(num, b2)}</b>
+73	Different denominators? First make them equal by multiplying the numerator and denominator by the same number.
+74	Of <b>${n}</b> ${it}, ${fr(a, b)} are given to a younger sibling. How many ${it} is that?
+75	Divide ${n} into ${b} equal groups: ${n} ÷ ${b} = ${x}
+76	Take ${a} groups: ${a} × ${x} = <b>${a * x}</b>
+77	"Fraction of" means divide by the denominator first, then multiply by the numerator.
+78	!Which fraction has the <b>${big ? 'largest' : 'smallest'}</b> value?
+79	Turn each fraction into a decimal (numerator ÷ denominator):
+80	!${big ? 'Largest' : 'Smallest'}: ${s(best)} (${N(best.v, 2)})
+81	A fraction below ½ has a numerator less than half its denominator. That is a quick way to filter.
+82	!Look at the square below. What is its <b>${askArea ? 'area' : 'perimeter'}</b>?
+83	Area of a square = side × side
+84	Perimeter of a square = 4 × side
+85	Area is measured in square units (cm²), perimeter along the edge (cm).
+86	Perimeter = length of the fence around the shape. All four sides of a square are equal.
+87	!What is the <b>${askArea ? 'area' : 'perimeter'}</b> of this rectangle?
+88	Area = length × width
+89	Perimeter = 2 × (length + width)
+90	For the perimeter, remember that opposite sides are equal, so every length counts twice.
+91	!The L-shaped figure below is a rectangle with one corner cut out. What is its <b>${askArea ? 'area' : 'perimeter'}</b>?
+92	Imagine the whole rectangle: ${w} × ${h} = ${w * h} cm²
+93	The cut-out part: ${cw} × ${ch} = ${cw * ch} cm²
+94	Area of the L = ${w * h} ${MINUS} ${cw * ch} = <b>${v} cm²</b>
+95	The perimeter of the L equals the perimeter of the whole rectangle, because the "missing" sides are replaced by notch sides of the same total length.
+96	Area of a complex shape = area of the big shape minus the missing part.
+97	Cutting a corner out of a rectangle does not change its perimeter!
+98	A triangle has an area of <b>${L} cm²</b> and a base of <b>${b} cm</b>. What is the height of the triangle?
+99	Area = ½ × base × height
+100	${L} = ½ × ${b} × height = ${b / 2} × height
+101	height = ${L} ÷ ${b / 2} = <b>${t} cm</b>
+102	When something is unknown, write the formula first, put in the numbers, then solve for the missing value.
+103	What is the area of this triangle?
+104	A triangle is half of a rectangle with the same base and height.
+105	Area = ½ × base × height = ½ × ${b} × ${t}
+106	The height of a triangle is always perpendicular to the base (shown by the dashed line), not the slanted side.
+107	The perimeter of a square is <b>${K} cm</b>. How long is its side?
+108	Perimeter of a square = 4 × side
+109	${K} = 4 × side
+110	side = ${K} ÷ 4 = <b>${s} cm</b>
+111	A square has 4 equal sides, so divide the perimeter by 4.
+112	A rectangle has a perimeter of <b>${K} cm</b> and a length of <b>${p} cm</b>. What is its width?
+113	Perimeter = 2 × (length + width), so length + width = ${K} ÷ 2 = ${K / 2}
+114	width = ${K / 2} ${MINUS} ${p} = <b>${l} cm</b>
+115	Length plus width is always half the perimeter.
+116	Difference between terms: ${seq[1]} ${MINUS} ${seq[0]} = <b>${st}</b>
+117	The rule: add ${st} at every step.
+118	Find the difference between neighboring terms. If it is always the same, it is a constant add (or subtract) pattern.
+123	The numbers get smaller: ${seq[0]} ${MINUS} ${seq[1]} = ${st}
+124	The rule: subtract ${st} at every step.
+125	A pattern can also go down. Check whether the numbers increase or decrease.
+127	The rule: multiply by 2 at every step.
+128	If the differences keep growing, check whether the pattern is multiplication.
+129	Differences between terms: ${seq[1] - seq[0]}, ${seq[2] - seq[1]}, ${seq[3] - seq[2]}, … always up by 2
+130	These are square numbers: ${seq.slice(0, 5).map((v, i) => `${i + 1 + o}²`).join(', ')}
+131	Square numbers: 1, 4, 9, 16, 25, 36, … The differences are 3, 5, 7, 9, …
+137	Differences between terms: 2, 3, 4, 5, … (keeps going up by 1)
+138	The next difference is 6.
+139	If the differences are not constant but form their own pattern, look at the "difference of the differences".
+141	The rule: each term is the sum of the two terms before it.
+142	This kind of pattern is called a Fibonacci sequence. Each term = the sum of the previous two terms.
+144	There are two patterns taking turns.
+145	Terms 1, 3, 5: ${s}, ${s + 1}, ${s + 2} (add 1)
+146	Terms 2, 4, 6: ${u}, ${u + 1}, ${u + 2} (add 1)
+147	Term 7 follows the first pattern: <b>${ans}</b>
+148	If a pattern looks random, try separating the odd-numbered and even-numbered terms.
+149	The rule: multiply by 2, then add 1.
+150	If adding or multiplying alone does not fit, try a combination of both.
+151	Find the number that replaces the question mark (?) in this pattern.
+152	What time does the clock below show? (written as hour.minute)
+153	The short hand shows the <b>hour</b>, the long hand shows the <b>minutes</b>.
+154	!The short hand is ${m === 0 ? 'exactly on ' + h : 'just past ' + h + ' (not yet at ' + wrap(h + 1) + ')'}, so the hour is <b>${h}</b>.
+155	The long hand points to ${m / 5}. Each number is worth 5 minutes: ${m / 5} × 5 = <b>${m} minutes</b>.
+156	The time: <b>${ans}</b>
+157	The long hand on 6 means 30 minutes, on 3 means 15 minutes, on 9 means 45 minutes.
+158	${n} watches a movie that starts at <b>${fmtT(sh, sm)}</b>. The movie lasts <b>${dh} hours ${dm} minutes</b>. What time does the movie end?
+159	Add the hours first: ${sh} + ${dh} = ${sh + dh} hours
+160	!Add the minutes: ${sm} + ${dm} = ${sm + dm} minutes${carry ? ' (more than 60)' : ''}
+161	${sm + dm} minutes = 1 hour ${em} minutes, so the hour goes up by 1 to ${eh}
+162	The minutes have not reached 60, so the hour does not change.
+163	The movie ends at <b>${ans}</b>
+164	One hour = 60 minutes. If the minutes pass 60, subtract 60 and add 1 hour.

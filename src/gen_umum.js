@@ -1,6 +1,5 @@
 'use strict';
 /* ====== Umum: matematika sehari-hari dan teka-teki (dua bahasa) ====== */
-const pk2 = (a, b) => { const i = Math.floor(rnd() * a.length); return tr(a[i], b[i]); };
 const DAYS_ID = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'], DAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const dayN = i => tr(DAYS_ID[i], DAYS_EN[i]);
 const MON_ID = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'], MON_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

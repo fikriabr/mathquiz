@@ -78,7 +78,8 @@ function cx(a, b) {
 /* tanda hubung di depan angka (di luar tag HTML) menjadi minus matematis */
 const fixMinus = h => String(h).replace(/(<[^>]*>)|(^|[\s=(,;:|]|(?<=>))-(?=\d)/g, (m, t, p) => (t ? t : p + MINUS));
 const ST = (...s) => '<ol class="steps">' + s.flat().map(x => `<li>${x}</li>`).join('') + '</ol>';
-const TIP = (t, en) => `<p class="tip"><b>${(LANG === 'en' && en != null) ? 'Tip:' : 'Trik:'}</b> ${tr(t, en)}</p>`;
+const TIP = (t, en) => `<p class="tip"><b>${LANG === 'en' ? 'Tip:' : 'Trik:'}</b> ${tr(t, en)}</p>`;
+const pk2 = (a, b) => { const i = Math.floor(rnd() * a.length); return tr(a[i], b[i]); };
 const G = (min, fn) => ({ min, fn });
 
 /* ----- pembuat pilihan jawaban ----- */
@@ -109,22 +110,23 @@ function numOpts(v, cands, fmt = N, step = 1) {
 }
 
 /* ----- langkah penjumlahan / pengurangan / perkalian per nilai tempat ----- */
-const PL = ['satuan', 'puluhan', 'ratusan', 'ribuan', 'puluh ribuan'];
+const PL_ID = ['Satuan', 'Puluhan', 'Ratusan', 'Ribuan', 'Puluh ribuan'], PL_EN = ['Ones', 'Tens', 'Hundreds', 'Thousands', 'Ten thousands'];
+const PL = p => tr(PL_ID[p], PL_EN[p]);
 const pv = n => { const s = String(n); return s.split('').map((c, i) => +c * Math.pow(10, s.length - 1 - i)); };
 function addSteps(a, b) {
   const L = Math.max(String(a).length, String(b).length); const st = []; const parts = [];
   for (let p = L - 1; p >= 0; p--) {
     const x = Math.floor(a / Math.pow(10, p)) % 10 * Math.pow(10, p), y = Math.floor(b / Math.pow(10, p)) % 10 * Math.pow(10, p);
-    parts.push(x + y); st.push(`${PL[p][0].toUpperCase() + PL[p].slice(1)}: ${N(x)} + ${N(y)} = <b>${N(x + y)}</b>`);
+    parts.push(x + y); st.push(`${PL(p)}: ${N(x)} + ${N(y)} = <b>${N(x + y)}</b>`);
   }
-  st.push(`Gabungkan: ${parts.map(N).join(' + ')} = <b>${N(a + b)}</b>`);
+  st.push(tr(`Gabungkan: ${parts.map(N).join(' + ')} = <b>${N(a + b)}</b>`, `Combine: ${parts.map(N).join(' + ')} = <b>${N(a + b)}</b>`));
   return st;
 }
 function subSteps(a, b) {
   const st = []; let cur = a;
   for (const v of pv(b)) { if (v === 0) continue; st.push(`${N(cur)} ${MINUS} ${N(v)} = ${N(cur - v)}`); cur -= v; }
   st[st.length - 1] = st[st.length - 1].replace(/= (.+)$/, '= <b>$1</b>');
-  return ['Kurangi sedikit demi sedikit, mulai dari nilai tempat terbesar:', ...st];
+  return [tr('Kurangi sedikit demi sedikit, mulai dari nilai tempat terbesar:', 'Subtract step by step, starting from the largest place value:'), ...st];
 }
 function dw(a, b, f) { const A = String(a).padStart(String(b).length, '0'), B = String(b).padStart(A.length, '0'); let r = ''; for (let i = 0; i < A.length; i++) r += f(+A[i], +B[i]); return +r; }
 function factorStr(n) {

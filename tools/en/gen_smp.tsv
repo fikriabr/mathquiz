@@ -1,0 +1,223 @@
+1	The temperature at the top of a mountain in the morning is <b>${MINUS}${a}°C</b>. In the afternoon it rises by <b>${b}°</b>. What is the afternoon temperature?
+2	"Rises" means add: ${MINUS}${a} + ${b}
+3	Start at ${MINUS}${a} and move ${b} steps up the number line.
+4	The result is <b>${sg(v)}°C</b>
+5	Picture a number line: moving right adds, moving left subtracts.
+6	The temperature in a fridge is at first <b>${t}°C</b>. After freezing, it drops by <b>${dr}°</b>. What is the temperature now?
+7	"Drops" means subtract: ${t} ${MINUS} ${dr}
+8	${t} ${MINUS} ${t} = 0, and there are still ${dr - t} steps left below zero.
+9	The result is <b>${sg(v)}°C</b>
+10	If a subtraction passes zero, the result becomes negative.
+11	Adding a positive number: move ${b} steps to the right from ${MINUS}${a}.
+12	Subtracting a negative number is the same as adding: ${a} ${MINUS} (${MINUS}${b}) = ${a} + ${b}.
+13	Subtracting a positive number: move ${b} steps to the left from ${MINUS}${a}.
+14	Two minus signs next to each other become a plus: ${MINUS}${a} + ${b}.
+15	What is the value of <b>${ex}</b>?
+16	The result is <b>${sg(v)}</b>
+17	"A negative times a negative is a positive" also applies to subtracting negative numbers: ${MINUS}(${MINUS}) = +.
+19	What is the value of <b>(${MINUS}${a}) × (${MINUS}${b})</b>?
+20	Negative × negative = positive
+21	Sign of a product: same signs → positive, different signs → negative.
+22	What is the value of <b>(${MINUS}${a}) × ${b}</b>?
+23	Negative × positive = negative
+24	${a} × ${b} = ${a * b}, so the result is <b>${sg(v)}</b>
+25	Sign of a product: same signs → positive, different signs → negative.
+26	What is the value of <b>(${MINUS}${N(tot)}) ÷ ${a}</b>?
+27	Negative ÷ positive = negative
+28	${tot} ÷ ${a} = ${b}, so the result is <b>${sg(v)}</b>
+29	Division follows the same sign rules as multiplication.
+30	Multiplication comes first: ${b} × ${c} = ${b * c}
+31	Brackets first: ${a} + ${b} = ${a + b}
+32	Multiply and divide (left to right): ${a + b} × ${c} = ${(a + b) * c} and ${dd} ÷ ${e} = ${k}
+33	Powers first: ${b}² = ${b * b}
+34	Multiply: ${b * b} × ${c} = ${b * b * c}
+35	Add and subtract from the left: ${a} + ${b * b * c} ${MINUS} ${e} = <b>${v}</b>
+36	Multiply first: ${b} × (${MINUS}${c}) = ${MINUS}${b * c}
+37	What is the value of <b>${ex}</b>?
+38	Order of operations: brackets → powers → multiply/divide → add/subtract.
+39	Working strictly left to right without respecting the order is the most common trap.
+40	A red light flashes every <b>${a}</b> seconds and a blue light every <b>${b}</b> seconds. Both flash together at second 0. At what second do they next flash together for the first time?
+41	Factorization: ${a} = ${fa.html}, ${b} = ${fb.html}
+42	Flashing together again means finding the <b>LCM</b> (least common multiple).
+43	LCM = all factors with the highest powers = <b>${kpk}</b>
+44	LCM keywords: "together again", "meet again", "when at the same time".
+45	Two ribbons of length <b>${a} cm</b> and <b>${b} cm</b> will be cut into equal pieces with nothing left over. What is the greatest possible length of each piece?
+46	Factorization: ${a} = ${fa.html}, ${b} = ${fb.html}
+47	Cutting into equal lengths with nothing left over means finding the <b>GCF</b> (greatest common factor).
+48	GCF = the shared factors with the lowest powers = <b>${fpb} cm</b>
+49	GCF keywords: "shared equally", "cut into equal lengths", "as large as possible".
+50	Find the value of <i>x</i> in <b>x + ${b} = ${x + b}</b>
+51	Move ${b} to the right side and the sign changes: x = ${x + b} ${MINUS} ${b}
+52	Check your answer: substitute it into the original equation. ${x} + ${b} = ${x + b} ✓
+53	Find the value of <i>x</i> in <b>${a}x = ${a * x}</b>
+54	${a}x means ${a} times x. Divide both sides by ${a}:
+55	The opposite of multiplying is dividing.
+56	Find the value of <i>x</i> in <b>${P([a, b])} = ${sg(c)}</b>
+57	Moving to the other side = change the sign. Do the addition/subtraction first, then the division.
+58	Find the value of <i>x</i> in <b>${P([a, b])} = ${P([c, e])}</b>
+59	Collect the x terms on the left: ${a}x ${MINUS} ${c}x = ${e} ${MINUS} (${sg(b)})
+60	x terms on one side, numbers on the other. Every time you cross the equals sign, the sign changes.
+61	The simplified form of <b>(${P([a, b])}) + (${P([c, e])})</b> is …
+62	Group like terms (x with x, numbers with numbers):
+63	numbers: ${neg(b)} + ${neg(e)} = ${b + e}
+64	Only like terms can be added together.
+65	The simplified form of <b>${a}(x ${b < 0 ? MINUS : '+'} ${Math.abs(b)}) ${c < 0 ? MINUS : '+'} ${Math.abs(c)}x</b> is …
+66	Multiply ${a} into the brackets: ${a}x ${a * b < 0 ? MINUS : '+'} ${Math.abs(a * b)}
+67	Combine the x terms: ${a}x ${c < 0 ? MINUS : '+'} ${Math.abs(c)}x = ${a + c}x
+68	Distributive property: a(b + c) = ab + ac. Don't forget to multiply the second term too!
+69	The product <b>(x ${p < 0 ? MINUS : '+'} ${Math.abs(p)})(x ${q < 0 ? MINUS : '+'} ${Math.abs(q)})</b> is …
+70	Every term in the first bracket must meet every term in the second bracket (4 products).
+71	The sum of two numbers is <b>${s}</b> and their difference is <b>${df}</b>. What is the larger number?
+72	Let the larger number = x and the smaller = y. x + y = ${s}, x ${MINUS} y = ${df}.
+73	Add the two equations: 2x = ${s + df}
+74	Sum + difference = 2 × the larger number.
+75	The sum of three consecutive integers is <b>${s}</b>. What is the largest of them?
+76	Let the numbers be n, n + 1, n + 2.
+77	The largest: ${m} + 2 = <b>${m + 2}</b>
+78	The middle number of three consecutive numbers equals the sum divided by 3.
+79	Dad's age is <b>${k} times</b> Dina's age. In <b>${y} years</b>, the sum of their ages will be <b>${S}</b>. How old is Dina now?
+80	Let Dina's age = x, Dad's age = ${k}x.
+81	In ${y} years: (${k}x + ${y}) + (x + ${y}) = ${S}
+82	Everyone gets older by the same amount, so the total grows by twice that.
+83	2 books and 3 pencils cost <b>${Rp(T1 * 1000)}</b>, while 1 book and 2 pencils cost <b>${Rp(T2 * 1000)}</b>. What is the price of one book?
+84	Let book = b and pencil = p (in thousands). 2b + 3p = ${T1} and b + 2p = ${T2}.
+85	Multiply the second equation by 2: 2b + 4p = ${2 * T2}
+86	Subtract: (2b + 4p) ${MINUS} (2b + 3p) = ${2 * T2} ${MINUS} ${T1} → p = ${p}
+87	Then b = ${T2} ${MINUS} 2 × ${p} = <b>${b}</b> → ${Rp(b * 1000)}
+88	Elimination: make the coefficients of one variable equal, then subtract so that variable disappears.
+89	shoes
+90	bag
+91	jacket
+92	headphones
+93	shirt
+94	watch
+95	A ${it} costs <b>${Rp(price)}</b> and has a <b>${p}%</b> discount. How much must be paid?
+96	Discount = ${p}% × ${N(price)} = ${N(dc)}
+97	Price to pay = ${N(price)} ${MINUS} ${N(dc)} = <b>${Rp(price - dc)}</b>
+98	Quick way: pay ${100 - p}% of the original price, i.e. ${N(price)} × ${(100 - p) / 100}.
+99	A ${it} costs <b>${Rp(price)}</b>. The shop gives a <b>${p1}%</b> discount, then an extra <b>${p2}%</b> off the price after the first discount. What is the final price?
+100	First discount ${p1}%: ${N(price)} × ${(100 - p1) / 100} = ${N(price * (100 - p1) / 100)}
+101	Second discount ${p2}% of the new price: ${N(price * (100 - p1) / 100)} × ${(100 - p2) / 100} = <b>${Rp(final)}</b>
+102	A stacked discount of ${p1}% + ${p2}% is not ${p1 + p2}%! The second discount is taken from the already reduced price.
+103	The price of an item rises from <b>${Rp(b)}</b> to <b>${Rp(nw)}</b>. By what percent did the price increase?
+104	Increase = ${N(nw)} ${MINUS} ${N(b)} = ${N(nw - b)}
+105	Percentage relative to the <b>original</b> price: ${N(nw - b)} ÷ ${N(b)} × 100% = <b>${p}%</b>
+106	Percent increase/decrease is always computed relative to the original value.
+107	After a <b>${p}%</b> discount, the price of a shirt becomes <b>${Rp(fin)}</b>. What was the price before the discount?
+108	Price after discount = ${100 - p}% of the original price.
+109	${100 - p}% × original price = ${N(fin)}
+110	original price = ${N(fin)} ÷ ${(100 - p) / 100} = <b>${Rp(base)}</b>
+111	Trap: adding ${p}% to the final price is wrong, because the ${p}% was taken from the original price.
+112	A cake recipe for <b>${pp}</b> people needs <b>${eg}</b> eggs. How many eggs are needed for <b>${people}</b> people?
+113	For 1 person: ${eg} ÷ ${pp} = ${N(eg / pp)} eggs
+114	For ${people} people: ${N(eg / pp)} × ${people} = <b>${need}</b> eggs
+115	Direct proportion: when one quantity goes up, the other goes up in the same ratio.
+116	On a map with a scale of <b>1 : ${N(k)}</b>, the distance between two cities is <b>${c} cm</b>. What is the real distance (in km)?
+117	Real distance = ${c} × ${N(k)} = ${N(c * k)} cm
+118	1 km = 100,000 cm, so ${N(c * k)} ÷ 100,000 = <b>${N(km)} km</b>
+119	From cm to km: divide by 100,000 (the same as removing 5 zeros).
+120	<b>${w1}</b> workers can finish a project in <b>${days}</b> days. How many days are needed if there are <b>${w2}</b> workers (same speed)?
+121	Total work = ${w1} × ${days} = ${w1 * days} (worker-days)
+122	With ${w2} workers: ${w1 * days} ÷ ${w2} = <b>${nd} days</b>
+123	Inverse proportion: more workers means less time.
+124	What is the length of the hypotenuse of the right triangle below?
+125	Pythagoras: hypotenuse² = ${A}² + ${B}²
+126	Hypotenuse = √${A * A + B * B} = <b>${C} cm</b>
+127	Common Pythagorean triples: 3-4-5, 5-12-13, 8-15-17, and their multiples.
+128	What is the length of the side marked with a question mark?
+129	The hypotenuse (${C}) is the longest side.
+130	Leg² = ${C}² ${MINUS} ${h ? A : B}² = ${C * C} ${MINUS} ${(h ? A : B) ** 2} = ${C * C - (h ? A : B) ** 2}
+131	Length = √${C * C - (h ? A : B) ** 2} = <b>${h ? B : A} cm</b>
+132	If the unknown is not the hypotenuse, subtract. If it is the hypotenuse, add.
+133	The two legs of a right triangle are ${a} cm and ${b} cm. What is the length of the hypotenuse (in simplest radical form)?
+134	Hypotenuse² = ${a}² + ${b}² = ${s}
+135	Hypotenuse = √${s}
+136	Simplify: <b>${sqrtForm(s)} cm</b>
+137	After taking the root, simplify by looking for a perfect-square factor: √50 = √(25×2) = 5√2.
+142	A <b>${C} m</b> ladder leans against a wall. The foot of the ladder is <b>${A} m</b> from the wall. How high up the wall does the top of the ladder reach?
+143	The ladder, the ground and the wall form a right triangle. The ladder is the hypotenuse.
+144	Height² = ${C}² ${MINUS} ${A}² = ${C * C - A * A}
+145	Height = √${C * C - A * A} = <b>${B} m</b>
+146	Always sketch the story first. Decide which side is the hypotenuse (the one opposite the right angle).
+148	A rectangular field measures <b>${A} m × ${B} m</b>. What is the length of the field's diagonal?
+149	The diagonal splits the rectangle into two right triangles.
+150	Diagonal² = ${A}² + ${B}² = ${A * A + B * B}
+151	Diagonal = <b>${C} m</b>
+152	Cutting across is shorter than going around the edges: ${C} m vs ${A + B} m.
+153	From home, Budi walks <b>${A} km</b> north, then <b>${B} km</b> east. How far is Budi in a straight line from home?
+154	North and east are perpendicular directions.
+155	Distance² = ${A}² + ${B}² = ${A * A + B * B}
+156	Distance = <b>${C} km</b>
+157	Two perpendicular directions always form a right angle.
+168	Triangle rule: the two shortest sides must together be longer than the longest side.
+169	${t[0]} + ${t[1]} = ${t[0] + t[1]}, while the longest side is ${t[2]}.
+170	${t[0] + t[1]} is not greater than ${t[2]}, so <b>it cannot form a triangle</b>.
+171	Longest side = ${t[2]}, its square is ${m2}.
+172	Sum of the squares of the other two sides: ${t[0]}² + ${t[1]}² = ${x2}.
+173	${x2} = ${m2} → <b>right triangle</b>
+174	${x2} > ${m2} → <b>acute triangle</b>
+175	${x2} < ${m2} → <b>obtuse triangle</b>
+176	A triangle has sides <b>${sd.join(' cm, ')} cm</b>. The triangle is …
+177	Sum of the squares of the two short sides: equal to the square of the long side → right, greater → acute, smaller → obtuse.
+182	Use π = ${piTxt}. What is the <b>${ask}</b> of the circle below?
+186	Diameter ${given} cm, so radius r = ${given} ÷ 2 = <b>${r} cm</b>
+187	Radius r = ${r} cm
+189	Circumference = 2 × π × r = 2 × ${piTxt} × ${r}
+190	Area = π × r² = ${piTxt} × ${r} × ${r}
+192	Use π = 22/7 when the radius is a multiple of 7, and 3.14 when the radius is a multiple of 10. Watch out: do not forget to halve the diameter!
+197	Use π = ${fr(22, 7)}. A circle has radius ${r} cm. What is the <b>${ask}</b> with a central angle of <b>${th}°</b>?
+201	Ratio of the sector to the full circle: ${th}° / 360° = ${frs(th, 360)}
+203	Area of the circle = πr² = ${N(full, 2)} cm²
+204	Circumference of the circle = 2πr = ${N(full, 2)} cm
+205	A sector is a "slice of pizza". First find how big the slice is compared with the whole circle.
+206	A bicycle wheel has a diameter of <b>${dia} cm</b> (π = ${fr(22, 7)}). How many full turns does it make to travel <b>${N(dist)} m</b>?
+207	Wheel circumference = π × d = ${fr(22, 7)} × ${dia} = ${C} cm
+208	Distance = ${N(dist)} m = ${N(C * n)} cm
+209	Number of turns = ${N(C * n)} ÷ ${C} = <b>${n}</b>
+210	One turn of the wheel = one circumference. Make the units the same (cm or m) before dividing.
+211	The diagram shows the math test scores of five students. What is the mean score?
+212	Add all the values: ${data.join(' + ')} = ${sum}
+213	Divide by the number of values: ${sum} ÷ 5 = <b>${m}</b>
+214	Mean = sum of all data ÷ number of data.
+215	The median of the data: <b>${data.join(', ')}</b> is …
+216	Sort from smallest: ${s.join(', ')}
+217	There are 7 values, so the middle value is the 4th.
+218	Median = <b>${med}</b>
+219	The median must be found after sorting. Taking the middle of unsorted data is a common trap.
+220	The mean of Rani's <b>${n}</b> test scores is <b>${m}</b>. What must her next score be so that the mean becomes <b>${t}</b>?
+221	Sum of the first ${n} scores = ${n} × ${m} = ${n * m}
+222	Sum needed for ${n + 1} scores = ${n + 1} × ${t} = ${(n + 1) * t}
+223	Next score = ${(n + 1) * t} ${MINUS} ${n * m} = <b>${x}</b>
+224	Use the total sum, not the mean: mean × number of data = sum of the data.
+230	A die is rolled once. The probability of rolling a <b>prime</b> number is …
+231	Prime numbers on a die: 2, 3, 5 → 3 out of 6.
+233	A die is rolled once. The probability of rolling an <b>odd</b> number is …
+234	Odd numbers on a die: 1, 3, 5 → 3 out of 6.
+236	A die is rolled once. The probability of rolling a number <b>greater than 4</b> is …
+237	Numbers greater than 4: 5 and 6 → 2 out of 6.
+238	A bag has ${r} red marbles, ${b} blue and ${h} green. One marble is drawn at random. The probability of drawing a <b>red</b> marble is …
+239	There are ${r} red marbles, out of ${r}+${b}+${h} = ${tot} in total.
+245	Two coins are tossed together. The probability that <b>both show heads</b> is …
+246	Sample space: HH, HT, TH, TT (4 outcomes). Only HH is wanted.
+248	Two coins are tossed together. The probability of <b>exactly one head</b> is …
+249	Sample space: HH, HT, TH, TT. Exactly one head: HT and TH.
+251	A box has ${r} red balls, ${b} blue and ${h} yellow. The probability of drawing a ball that is <b>not blue</b> is …
+252	Not blue = ${r} + ${h} = ${fav} out of ${tot}.
+253	A card is drawn at random from cards numbered 1 to ${n}. The probability of drawing a <b>multiple of ${k}</b> is …
+254	Multiples of ${k} up to ${n}: there are ${fav} numbers.
+259	A bag has ${r} red marbles and ${b} blue. Two marbles are drawn one after another <b>without replacement</b>. The probability that both are red is …
+260	Draw 1: ${r}/${r + b}. Draw 2: ${r - 1}/${r + b - 1}. Multiply: ${r * (r - 1)}/${tot}.
+263	!Two dice are rolled together. The probability that the sum of the two dice ${t === 'sum7' ? '<b>equals 7</b>' : t === 'sum8' ? '<b>equals 8</b>' : '<b>is at least 10</b>'} is …
+264	Two dice have 6 × 6 = 36 possible outcomes. ${c} pairs satisfy the condition.
+265	Probability = number of favorable outcomes ÷ total number of outcomes = ${fr(fav, tot)}${gcd(fav, tot) > 1 ? ' = <b>' + ans + '</b>' : ''}
+266	Probability is always between 0 and 1. If your result is greater than 1, something is wrong.
+271	A coin is tossed <b>${n}</b> times. The expected frequency of heads is …
+272	Probability of heads = ${fr(1, 2)}
+273	Expected frequency = probability × number of trials = ${fr(1, 2)} × ${n} = <b>${n / 2}</b>
+274	Expected frequency is an average estimate, not a guaranteed outcome.
+276	A die is rolled <b>${n}</b> times. The expected number of times a <b>6</b> shows up is … times
+277	Probability of a 6 = ${fr(1, 6)}
+278	Expected frequency = probability × number of trials.
+279	The probability of rain each day in a month is <b>${p}%</b>. Over <b>${days}</b> days, rain is expected on … days
+280	${p}% × ${days} = <b>${v}</b> days
+281	Convert the percent to a fraction or decimal before multiplying.
