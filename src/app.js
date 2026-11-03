@@ -48,18 +48,21 @@ const nf = n => N(n, 0);
 const CAT = [];
 LEVELS.forEach((lv, li) => (TOPICS[lv.id] || []).forEach(tp => tp.gens.forEach(g => {
   const n = g.fn.name, m = GEN_META[n] || ['aritmatika', n, n];
-  CAT.push({ name: n, fn: g.fn, li, level: lv.id, materi: m[0], ti: m[1], te: m[2], min: g.min });
+  CAT.push({ name: n, fn: g.fn, li, level: lv.id, materi: m[0], ti: m[1], te: m[2], min: g.min, ext: !!g.ext });
 })));
 const GEN_N = CAT.length;
 if (typeof GSM !== 'undefined') GSM_CATS.forEach(g => CAT.push({ name: g.name, fn: null, gsm: true, li: LEVELS.findIndex(l => l.id === g.level), level: g.level, materi: g.materi, ti: 'Soal Cerita (GSM8K)', te: 'Word Problem (GSM8K)', min: 1 }));
 const PR = (() => {
   const gi = [], d = [], sd = [];
-  const pass = (from, to, bank) => { for (let dd = 1; dd <= 3; dd++) for (let i = from; i < to; i++) {
+  const pass = (list, bank) => { for (let dd = 1; dd <= 3; dd++) for (const i of list) {
     const str = (bank[CAT[i].name] || {})[dd]; if (!str) continue;
     let prev = 0; for (const x of str.split(',')) { prev += parseInt(x, 36); gi.push(i); d.push(dd); sd.push(prev); }
   } };
-  pass(0, GEN_N, typeof BANK_DATA !== 'undefined' ? BANK_DATA : {});
-  if (typeof GSM !== 'undefined') pass(GEN_N, CAT.length, GSM_BANK);
+  /* urutan nomor soal: (1) generator utama, (2) GSM8K, (3) generator perluasan. Blok baru selalu di belakang, jadi nomor lama tidak bergeser. */
+  const main = [], ext = [], gsm = []; CAT.forEach((c, i) => (c.gsm ? gsm : c.ext ? ext : main).push(i));
+  pass(main, typeof BANK_DATA !== 'undefined' ? BANK_DATA : {});
+  if (typeof GSM !== 'undefined') pass(gsm, GSM_BANK);
+  pass(ext, typeof BANK_DATA !== 'undefined' ? BANK_DATA : {});
   return { gi: Uint16Array.from(gi), d: Uint8Array.from(d), seed: Float64Array.from(sd), n: gi.length };
 })();
 const MKEYS = Object.keys(MATERI);

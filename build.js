@@ -1,5 +1,5 @@
 const fs = require('fs');
-const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_smp2', 'gen_sma2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_extra', 'meta', 'bank', 'gsm', 'mathfmt', 'app'];
+const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_smp2', 'gen_sma2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_ext1', 'gen_ext2', 'gen_ext3', 'gen_extra', 'meta', 'bank', 'gsm', 'mathfmt', 'app'];
 const js = order.filter(f => fs.existsSync(`src/${f}.js`)).map(f => fs.readFileSync(`src/${f}.js`, 'utf8').replace(/^'use strict';\n/, '')).join('\n');
 const css = fs.readFileSync('src/katex.css', 'utf8') + '\n' + fs.readFileSync('src/style.css', 'utf8');
 const html = `<title>Jagoan Matematika</title>

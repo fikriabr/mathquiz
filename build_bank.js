@@ -1,7 +1,7 @@
 /* Bangun bank soal: jalankan semua generator, buang duplikat, simpan seed unik */
 const fs = require('fs'), vm = require('vm');
 const CAP = +process.env.CAP || 1200;
-const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_smp2', 'gen_sma2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_extra', 'meta'];
+const order = ['core', 'gen_sd', 'gen_smp', 'gen_sma', 'gen_trig', 'gen_sd2', 'gen_smp2', 'gen_sma2', 'gen_kuliah', 'gen_kuliah2', 'gen_umum', 'gen_ext1', 'gen_ext2', 'gen_ext3', 'gen_extra', 'meta'];
 const files = order.filter(f => fs.existsSync(`src/${f}.js`));
 const code = files.map(f => fs.readFileSync(`src/${f}.js`, 'utf8')).join('\n') + '\n;this.__ = { TOPICS, LEVELS, seedRng, setLang };';
 const ctx = { console }; vm.createContext(ctx); vm.runInContext(code, ctx);
@@ -9,7 +9,9 @@ const { TOPICS, LEVELS, seedRng, setLang } = ctx.__; setLang('id');
 const seen = new Set(), data = {}, stats = [];
 let total = 0;
 const strip = s => String(s).replace(/<[^>]+>/g, '');
-for (const lv of LEVELS) for (const tp of (TOPICS[lv.id] || [])) for (const g of tp.gens) {
+/* generator perluasan (g.ext) diproses paling akhir agar seed soal yang sudah ada tidak berubah */
+for (const pass of [false, true]) for (const lv of LEVELS) for (const tp of (TOPICS[lv.id] || [])) for (const g of tp.gens) {
+  if (!!g.ext !== pass) continue;
   const name = g.fn.name; data[name] = {};
   for (let d = g.min; d <= 3; d++) {
     const seeds = []; let tries = 0, miss = 0;

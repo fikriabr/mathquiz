@@ -1,5 +1,5 @@
 const fs=require('fs'),vm=require('vm');
-const files=process.argv.slice(2).length?process.argv.slice(2):['core','gen_sd','gen_smp','gen_sma','gen_trig','gen_sd2','gen_smp2','gen_sma2','gen_kuliah','gen_kuliah2','gen_umum'];
+const files=process.argv.slice(2).length?process.argv.slice(2):['core','gen_sd','gen_smp','gen_sma','gen_trig','gen_sd2','gen_smp2','gen_sma2','gen_kuliah','gen_kuliah2','gen_umum','gen_ext1','gen_ext2','gen_ext3'];
 const code=['core',...files.filter(f=>f!=='core')].map(f=>fs.readFileSync(`src/${f}.js`,'utf8')).join('\n')+'\n;this.__T=TOPICS;this.__seed=seedRng;';
 const ctx={console};vm.createContext(ctx);vm.runInContext(code,ctx);
 const T=ctx.__T;let bad=0,total=0;const uniq={};
