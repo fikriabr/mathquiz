@@ -199,3 +199,9 @@ sup, sub { line-height: 0; }
 /* ---- KaTeX ---- */
 .katex { font-size: 1.08em; } .qtext .katex { font-size: 1.12em; } .opt .katex { font-size: 1.12em; } .katex-display { margin: .4em 0; }
 .steps .katex, .tip .katex { font-size: 1.04em; } .opt .v { overflow-x: auto; overflow-y: hidden; }
+
+.numans { margin: 18px 0; display: grid; gap: 8px; }
+.numans label { font-weight: 800; color: var(--muted); font-size: .95rem; }
+.numans input { font: inherit; font-weight: 800; font-size: 1.4rem; padding: 12px 14px; border: 2.5px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); box-shadow: 0 4px 0 var(--shade); max-width: 340px; width: 100%; }
+.numans input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.numans input[disabled] { opacity: .75; }

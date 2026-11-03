@@ -16,7 +16,8 @@ const UI = {
     revealed_note: 'Pembahasan dibuka, soal ini tidak dihitung selesai. Coba soal serupa untuk menguji pemahamanmu.',
     s_title: 'Statistik', s_solved: 'Terselesaikan', s_streak: 'Rentetan hari', s_days: 'hari', s_act: 'Aktivitas 26 minggu terakhir', s_by_diff: 'Menurut kesulitan',
     s_by_level: 'Menurut jenjang', s_by_topic: 'Menurut materi', s_subs: 'jawaban dikirim',
-    foot: 'Soal dibuat otomatis dari template, tetapi setiap nomor selalu menghasilkan soal yang sama.', foot_en: 'Terjemahan Inggris: {p}% soal',
+    ans_label: 'Jawabanmu (angka)', ans_ph: 'ketik angka', need_num: 'Ketik jawaban berupa angka dulu.', gsm_note: 'Soal berbahasa Inggris, diambil dari GSM8K (OpenAI, lisensi MIT). Jawab dengan angka.', src_gsm: 'Sumber: GSM8K', not_num: 'Itu belum berupa angka. Contoh: 42 atau 1.250',
+    foot: 'Sebagian besar soal dibuat otomatis dari template (nomor yang sama selalu menghasilkan soal yang sama). Soal cerita GSM8K © 2021 OpenAI, lisensi MIT; jenjang dan kesulitannya ditentukan dari jumlah langkah penyelesaian, materinya dari kata kunci.', foot_en: 'Terjemahan Inggris: {p}% soal',
     theme: 'Ganti tema terang/gelap', lang: 'Bahasa', n_topics: '{n} materi'
   },
   en: {
@@ -34,7 +35,8 @@ const UI = {
     revealed_note: "Explanation opened, so this problem isn't counted as solved. Try a similar one to test yourself.",
     s_title: 'Your stats', s_solved: 'Solved', s_streak: 'Day streak', s_days: 'days', s_act: 'Activity, last 26 weeks', s_by_diff: 'By difficulty',
     s_by_level: 'By level', s_by_topic: 'By topic', s_subs: 'submissions',
-    foot: 'Problems are generated from templates, but each number always gives the same problem.', foot_en: 'English coverage: {p}% of problems',
+    ans_label: 'Your answer (a number)', ans_ph: 'type a number', need_num: 'Type a numeric answer first.', gsm_note: 'Word problem from GSM8K (OpenAI, MIT License). Answer with a number.', src_gsm: 'Source: GSM8K', not_num: 'That is not a number yet. Example: 42 or 1,250',
+    foot: 'Most problems are generated from templates (the same number always gives the same problem). GSM8K word problems © 2021 OpenAI, MIT License; their level and difficulty come from the number of solution steps, their topic from keywords.', foot_en: 'English coverage: {p}% of problems',
     theme: 'Toggle light/dark theme', lang: 'Language', n_topics: '{n} topics'
   }
 };
@@ -48,27 +50,43 @@ LEVELS.forEach((lv, li) => (TOPICS[lv.id] || []).forEach(tp => tp.gens.forEach(g
   const n = g.fn.name, m = GEN_META[n] || ['aritmatika', n, n];
   CAT.push({ name: n, fn: g.fn, li, level: lv.id, materi: m[0], ti: m[1], te: m[2], min: g.min });
 })));
+const GEN_N = CAT.length;
+if (typeof GSM !== 'undefined') GSM_CATS.forEach(g => CAT.push({ name: g.name, fn: null, gsm: true, li: LEVELS.findIndex(l => l.id === g.level), level: g.level, materi: g.materi, ti: 'Soal Cerita (GSM8K)', te: 'Word Problem (GSM8K)', min: 1 }));
 const PR = (() => {
   const gi = [], d = [], sd = [];
-  for (let dd = 1; dd <= 3; dd++) CAT.forEach((c, i) => {
-    const str = (typeof BANK_DATA !== 'undefined' ? BANK_DATA[c.name] || {} : {})[dd]; if (!str) return;
+  const pass = (from, to, bank) => { for (let dd = 1; dd <= 3; dd++) for (let i = from; i < to; i++) {
+    const str = (bank[CAT[i].name] || {})[dd]; if (!str) continue;
     let prev = 0; for (const x of str.split(',')) { prev += parseInt(x, 36); gi.push(i); d.push(dd); sd.push(prev); }
-  });
+  } };
+  pass(0, GEN_N, typeof BANK_DATA !== 'undefined' ? BANK_DATA : {});
+  if (typeof GSM !== 'undefined') pass(GEN_N, CAT.length, GSM_BANK);
   return { gi: Uint16Array.from(gi), d: Uint8Array.from(d), seed: Float64Array.from(sd), n: gi.length };
 })();
 const MKEYS = Object.keys(MATERI);
 const COUNT = { d: [0, 0, 0, 0], l: {}, m: {}, en: 0 };
-for (let i = 0; i < PR.n; i++) { const c = CAT[PR.gi[i]]; COUNT.d[PR.d[i]]++; COUNT.l[c.level] = (COUNT.l[c.level] || 0) + 1; COUNT.m[c.materi] = (COUNT.m[c.materi] || 0) + 1; if (EN_READY.has(c.name)) COUNT.en++; }
+for (let i = 0; i < PR.n; i++) { const c = CAT[PR.gi[i]]; COUNT.d[PR.d[i]]++; COUNT.l[c.level] = (COUNT.l[c.level] || 0) + 1; COUNT.m[c.materi] = (COUNT.m[c.materi] || 0) + 1; if (c.gsm || EN_READY.has(c.name)) COUNT.en++; }
 const catOf = id => CAT[PR.gi[id - 1]];
 const titleOf = c => LANG === 'en' ? c.te : c.ti;
 const materiName = k => (MATERI[k] || [k, k])[LANG === 'en' ? 1 : 0];
 const levelName = c => { const lv = LEVELS[c.li]; return LANG === 'en' ? lv.en : lv.id_; };
 const diffName = d => DIFFS[d - 1][LANG === 'en' ? 'en' : 'id'];
 function genProblem(id) {
-  const c = catOf(id); seedRng(PR.seed[id - 1]); let r = null;
+  const c = catOf(id); if (c.gsm) return gsmProblem(PR.seed[id - 1]);
+  seedRng(PR.seed[id - 1]); let r = null;
   try { r = c.fn(PR.d[id - 1]); } catch (e) { r = null; }
   if (r && r.o) { r.q = fixMinus(r.q); r.exp = fixMinus(r.exp || ''); r.o.opts = r.o.opts.map(fixMinus); }
   return r;
+}
+const escH = x => x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function gsmProblem(i) {
+  const [q, sol, ans] = GSM[i];
+  return { q: escH(q).replace(/\n+/g, '<br>'), num: { ans }, exp: ST(sol.split('\n').filter(Boolean).map(l => escH(l).replace(/(?<=[\d)])\s?\*\s?(?=[\d($])/g, ' × '))) + `<p class="mut" style="margin-top:10px">${t('src_gsm')}</p>`, gsm: true };
+}
+/* baca jawaban angka dari teks yang diketik (menerima 1.250 / 1,250 / 1250 / $12 / 3,5) */
+function parseNum(sv) {
+  let x = String(sv).trim().replace(/\s+/g, '').replace(/^(rp|\$|usd)/i, '').replace(/%$/, ''); if (!x) return null;
+  if (/^-?\d{1,3}([.,]\d{3})+$/.test(x)) x = x.replace(/[.,]/g, ''); else x = x.replace(',', '.');
+  return /^-?\d+(\.\d+)?$/.test(x) ? parseFloat(x) : null;
 }
 const tmp = document.createElement('div');
 const plain = html => { tmp.innerHTML = html; return tmp.textContent.replace(/\s+/g, ' ').trim(); };
@@ -161,7 +179,7 @@ function rowHTML(id) {
 /* ====== Halaman soal ====== */
 let CUR = null;
 function openProblem(id) {
-  CUR = { id, r: genProblem(id), sel: -1, wrong: new Set(), solved: false, revealed: false, last: null, msg: '' };
+  CUR = { id, r: genProblem(id), sel: -1, val: '', wrong: new Set(), solved: false, revealed: false, last: null, msg: '' };
   DB.lastId = id; saveDB(); renderProblem(); window.scrollTo(0, 0);
 }
 function neighbor(id, dir) {
@@ -173,8 +191,8 @@ function neighbor(id, dir) {
 function renderProblem() {
   const { id, r } = CUR, c = catOf(id), d = PR.d[id - 1], done = CUR.solved || CUR.revealed;
   if (!r) { $app.innerHTML = header('list') + `<main class="wrap pv"><p>Error</p></main>`; return; }
-  const o = r.o, miss = LANG === 'en' && !EN_READY.has(c.name);
-  const opts = o.opts.map((txt, i) => {
+  const isNum = !!r.num, o = r.o || { opts: [], ans: -1 }, miss = !isNum && LANG === 'en' && !EN_READY.has(c.name);
+  const opts = isNum ? '' : o.opts.map((txt, i) => {
     let cls = '', dis = '';
     if (done) { dis = 'disabled'; if (i === o.ans) cls = 'ok'; else if (CUR.wrong.has(i)) cls = 'bad'; }
     else if (CUR.wrong.has(i)) { cls = 'bad'; dis = 'disabled'; } else if (CUR.sel === i) cls = 'sel';
@@ -182,29 +200,39 @@ function renderProblem() {
   }).join('');
   let fb = '';
   const expl = `<h3>${t('explain')}</h3>${fmtMath(r.exp || '')}${r.ev ? `<div class="viz">${fmtMath(r.ev)}</div>` : ''}`;
-  if (CUR.solved) fb = `<section class="card fb ok" role="status"><h2>${t('correct_t')}</h2>${expl}</section>`;
-  else if (CUR.revealed) fb = `<section class="card fb info" role="status"><p class="ans">${t('right_ans')} <b>${'ABCD'[o.ans]}</b></p><p class="mut">${t('revealed_note')}</p>${expl}</section>`;
+  const ansTxt = isNum ? nf(r.num.ans) : 'ABCD'[o.ans];
+  if (CUR.solved) fb = `<section class="card fb ok" role="status"><h2>${t('correct_t')}</h2>${isNum ? `<p class="ans">${t('right_ans')} <b>${ansTxt}</b></p>` : ''}${expl}</section>`;
+  else if (CUR.revealed) fb = `<section class="card fb info" role="status"><p class="ans">${t('right_ans')} <b>${ansTxt}</b></p><p class="mut">${t('revealed_note')}</p>${expl}</section>`;
   else if (CUR.last === 'wrong') fb = `<section class="card fb bad" role="status"><h2>${t('wrong_t')}</h2><p>${t('retry')}?</p></section>`;
   const tries = DB.attempts[id] | 0;
   $app.innerHTML = header('list') + `<main class="wrap pv lvbg-${c.level}">
   <div class="pv-top"><a class="btn sm" href="#problems">← ${t('back')}</a><span style="display:flex;gap:8px"><button class="btn sm" data-act="nav" data-v="-1">← ${t('prev_p')}</button><button class="btn sm" data-act="random">${t('btn_random')}</button><button class="btn sm" data-act="nav" data-v="1">${t('next')} →</button></span></div>
   <h1><span class="pid">#${id}</span> ${esc(titleOf(c))}</h1>
-  <div class="tags"><span class="tag lv-${c.level}">${levelName(c)}</span><span class="chip dif dif${d}">${diffName(d)}</span><span class="chip">${materiName(c.materi)}</span>${stIcon(DB.status[id] | 0)}<span class="mut" style="font-size:.88rem">${tries ? t('attempts') + ': ' + tries : t('not_tried')}</span>${miss ? `<span class="nomt">${t('untranslated')}</span>` : ''}</div>
+  <div class="tags"><span class="tag lv-${c.level}">${levelName(c)}</span><span class="chip dif dif${d}">${diffName(d)}</span><span class="chip">${materiName(c.materi)}</span>${stIcon(DB.status[id] | 0)}<span class="mut" style="font-size:.88rem">${tries ? t('attempts') + ': ' + tries : t('not_tried')}</span>${miss ? `<span class="nomt">${t('untranslated')}</span>` : ''}${isNum && LANG !== 'en' ? `<span class="nomt">${t('gsm_note')}</span>` : ''}</div>
   <article class="card qcard"><div class="qtext">${fmtMath(r.q)}</div>${r.viz ? `<div class="viz">${r.viz}</div>` : ''}</article>
-  <div class="opts" role="group" aria-label="Pilihan jawaban">${opts}</div>
+  ${isNum ? `<div class="numans"><label for="numin">${t('ans_label')}</label><input id="numin" type="text" inputmode="decimal" autocomplete="off" placeholder="${t('ans_ph')}" value="${esc(CUR.val || '')}" ${done ? 'disabled' : ''}></div>` : `<div class="opts" role="group" aria-label="Pilihan jawaban">${opts}</div>`}
   ${done ? `<div class="actions"><button class="btn pri" data-act="nav" data-v="1">${t('next_p')} →</button></div>` : `<div class="actions"><button class="btn pri" data-act="submit">${t('submit')}</button><button class="btn" data-act="reveal">${t('show_sol')}</button><span class="mut" id="msg" role="alert">${CUR.msg}</span></div>`}
   ${fb}</main>`;
   if (CUR.last === 'wrong') { CUR.last = null; }
 }
+function focusNum(sel) { const el = document.getElementById('numin'); if (el && !el.disabled) { el.focus(); if (sel) el.select(); } }
 function bumpActivity() { const k = today(); DB.act[k] = (DB.act[k] || 0) + 1; }
 function submit() {
-  if (CUR.sel < 0) { CUR.msg = t('pick_first'); renderProblem(); return; }
-  const ok = CUR.sel === CUR.r.o.ans; DB.attempts[CUR.id] = (DB.attempts[CUR.id] | 0) + 1; bumpActivity();
-  if (ok) { DB.status[CUR.id] = 2; CUR.solved = true; CUR.last = 'ok'; } else { if (!DB.status[CUR.id]) DB.status[CUR.id] = 1; CUR.wrong.add(CUR.sel); CUR.last = 'wrong'; }
-  CUR.sel = -1; CUR.msg = ''; saveDB(); renderProblem();
+  let ok;
+  if (CUR.r.num) {
+    const el = document.getElementById('numin'); CUR.val = el ? el.value : CUR.val; const v = parseNum(CUR.val);
+    if (!CUR.val.trim()) { CUR.msg = t('need_num'); renderProblem(); focusNum(); return; }
+    if (v === null) { CUR.msg = t('not_num'); renderProblem(); focusNum(); return; }
+    ok = Math.abs(v - CUR.r.num.ans) < 1e-6;
+  } else {
+    if (CUR.sel < 0) { CUR.msg = t('pick_first'); renderProblem(); return; }
+    ok = CUR.sel === CUR.r.o.ans;
+  } DB.attempts[CUR.id] = (DB.attempts[CUR.id] | 0) + 1; bumpActivity();
+  if (ok) { DB.status[CUR.id] = 2; CUR.solved = true; CUR.last = 'ok'; } else { if (!DB.status[CUR.id]) DB.status[CUR.id] = 1; if (!CUR.r.num) CUR.wrong.add(CUR.sel); CUR.last = 'wrong'; }
+  CUR.sel = -1; CUR.msg = ''; saveDB(); renderProblem(); if (!ok) focusNum(true);
   const el = $app.querySelector('.fb'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-function reveal() { CUR.revealed = true; if (!DB.status[CUR.id]) DB.status[CUR.id] = 1; saveDB(); renderProblem(); const el = $app.querySelector('.fb'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+function reveal() { const ni = document.getElementById('numin'); if (ni) CUR.val = ni.value; CUR.revealed = true; if (!DB.status[CUR.id]) DB.status[CUR.id] = 1; saveDB(); renderProblem(); const el = $app.querySelector('.fb'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
 
 /* ====== Statistik ====== */
 function renderStats() {
@@ -247,7 +275,8 @@ const ACT = {
   submit, reveal, nav: el => go(neighbor(CUR.id, +el.dataset.v))
 };
 $app.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (el && ACT[el.dataset.act]) ACT[el.dataset.act](el); });
-$app.addEventListener('input', e => { if (e.target.id === 'q') { F.q = e.target.value; F.page = 1; renderResults(); } });
+$app.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'numin') { e.preventDefault(); submit(); } });
+$app.addEventListener('input', e => { if (e.target.id === 'numin' && CUR) CUR.val = e.target.value; if (e.target.id === 'q') { F.q = e.target.value; F.page = 1; renderResults(); } });
 document.addEventListener('keydown', e => {
   if (!/^#problem-/.test(location.hash) || !CUR || /INPUT|TEXTAREA|BUTTON|A/.test(e.target.tagName) && e.key === 'Enter' || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
   const k = e.key.toLowerCase(), i = '1234'.indexOf(k) >= 0 ? '1234'.indexOf(k) : 'abcd'.indexOf(k);
